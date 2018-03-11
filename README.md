@@ -1,6 +1,9 @@
 # vlc-discord-rpc
 Discord rich presence for VLC media player.
 
+![Example](https://raw.githubusercontent.com/Pigpog/vlc-discord-rpc/master/example.PNG)
+
+
 ### Requirements
 
 - [NodeJS and NPM](https://nodejs.org/en/)
