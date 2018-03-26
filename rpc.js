@@ -5,11 +5,11 @@ var vlcService = require("droopy-vlc"),
 
 function escapeHtml(text) {
   return text
-      .replace(/\b(&#39;)\b/g,"'")
-      .replace(/\b(&amp;)\b/g,"&")
-      .replace(/\b(&lt;)\b/g,"<")
-      .replace(/\b(&gt;)\b/g,">")
-      .replace(/\b(&quot;)\b/g,'"')
+      .replace(/(&#39;)/g,"'")
+      .replace(/(&amp;)/g,"&")
+      .replace(/(&lt;)/g,"<")
+      .replace(/(&gt;)/g,">")
+      .replace(/(&quot;)/g,'"')
 }
 
 //used to check if there have been updates
