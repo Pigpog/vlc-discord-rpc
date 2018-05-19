@@ -20,6 +20,6 @@ Enter your VLC web interface password
 
 #### Run the command `npm install` in the project directory
 
-#### Run the command `node rpc.js` in the project directory
+#### Restart VLC and run the command `node rpc.js` in the project directory
 
 ### Enjoy
