@@ -8,6 +8,7 @@ Discord rich presence for VLC media player.
 
 - [NodeJS and NPM](https://nodejs.org/en/)
 - Discord desktop client (not the website)
+- Git
 
 ### Setup
 
