@@ -24,3 +24,13 @@ Enter your VLC web interface password
 #### Restart VLC and run the command `node rpc.js` in the project directory
 
 ### Enjoy
+
+#### TO MAKE ALL IN ONE SHORTCUT (new update):
+The new update allows you to launch vlc with the rpc script. This can be made into a shortcut. The command needed to do so is
+```
+node "path/to/rpc.js" withvlc
+```
+On windows, create a new shortcut with that as the file location/target (replacing the path/to/ part with the actual file path). You can then set the icon to the vlc cone if you want by going into shortcut properties and hitting change icon.
+If you're on linux you probably know how to create shortcuts on your DE and it should be the same idea.
+
+**PLEASE NOTE** To launch VLC the script needs to know where VLC is. The config.js file contains what I think to be the defaults for each system. You may need to modify this.
