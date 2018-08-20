@@ -38,19 +38,22 @@ function update(){
 		  largeImageKey: "vlc",
 		  smallImageKey: status.state,
 		  instance: true,
+		  endTimestamp:parseInt(parseInt(Date.now()/1000)+(parseInt(status.duration)-parseInt(status.time))/status.rate),
 		}
-		if(newPlaying.state!==nowPlaying.state || newPlaying.details!==nowPlaying.details || newPlaying.smallImageKey!==nowPlaying.smallImageKey){	//if anything has changed
+		if(newPlaying.state!==nowPlaying.state || newPlaying.details!==nowPlaying.details || newPlaying.smallImageKey!==nowPlaying.smallImageKey || newPlaying.endTimestamp!==nowPlaying.endTimestamp){	//if anything has changed
 			console.log("Changes detected; sending to Discord")
 			if(status.state==="playing"){
 				newPlaying.startTimestamp=Date.now()/1000
-				newPlaying.endTimestamp=parseInt(parseInt(Date.now()/1000)+(parseInt(status.duration)-parseInt(status.time)))
+				newPlaying.endTimestamp=parseInt(parseInt(Date.now()/1000)+(parseInt(status.duration)-parseInt(status.time))/status.rate)
+			}else{
+			  delete newPlaying.endTimestamp
 			}
 			client.updatePresence(newPlaying);
 			delete newPlaying.startTimestamp
-			delete newPlaying.endTimestamp
 			nowPlaying=newPlaying
 		}
 	}, function (error){	//if nothing is playing
+		//console.log(error) //uncomment for debug
 		var newPlaying={
 			state: "Stopped",
 			details: "What did you expect this to say?",
