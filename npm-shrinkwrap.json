@@ -75,10 +75,13 @@
       "version": "0.0.7",
       "resolved": "https://registry.npmjs.org/discord-rich-presence/-/discord-rich-presence-0.0.7.tgz",
       "integrity": "sha512-svuNsMuKuS3NnQA9n/Bq0f09LMErXh6PepIbCNRn9F7w5xeA0VlbL96k1yIOScuuGoxSYpelayxlJBZLxpIxAw==",
+      "requires": {
+        "discord-rpc": "github:discordjs/rpc#e74c85a0fb184a9980c269229d7a305473152ead"
+      },
       "dependencies": {
         "discord-rpc": {
-          "version": "github:discordjs/rpc#0ac1704ce9080dfc5267360a8df190267ae51b82",
-          "from": "github:discordjs/rpc#0ac1704ce9080dfc5267360a8df190267ae51b82",
+          "version": "github:discordjs/rpc#e74c85a0fb184a9980c269229d7a305473152ead",
+          "from": "github:discordjs/rpc",
           "requires": {
             "node-fetch": "^2.1.2",
             "ws": "^5.2.1"

@@ -28,7 +28,7 @@ function update(){
 	vlc.status().then(function(status) {
 		var secondline=""
 		if(status.isVideo){
-			secondline=escapeHtml(status.date)+" Video";
+			secondline=escapeHtml(status.date || "")+" Video";
 		}else{
 			secondline=escapeHtml(status.artist+" - "+status.album);
 		}
@@ -53,7 +53,7 @@ function update(){
 			nowPlaying=newPlaying
 		}
 	}, function (error){	//if nothing is playing
-		//console.log(error) //uncomment for debug
+		console.log(error) //uncomment for debug
 		var newPlaying={
 			state: "Stopped",
 			details: "What did you expect this to say?",
