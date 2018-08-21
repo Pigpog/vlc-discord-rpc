@@ -53,7 +53,7 @@ function update(){
 			nowPlaying=newPlaying
 		}
 	}, function (error){	//if nothing is playing
-		console.log(error) //uncomment for debug
+		//console.log(error) //uncomment for debug
 		var newPlaying={
 			state: "Stopped",
 			details: "What did you expect this to say?",
