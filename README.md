@@ -19,7 +19,7 @@ You will need to enable the VLC web interface. To do this, go to the Preferences
 Enter your VLC web interface password
 `exports.vlcPass="your password here"`
 
-#### Run the command `npm install` in the project directory
+#### Run the command `npm install` in the project directory. It will display a bunch of warnings about peer-dependencies, but they should be ignored.
 
 #### Restart VLC and run the command `node rpc.js` in the project directory
 
