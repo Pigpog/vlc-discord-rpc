@@ -27,9 +27,11 @@ var nowPlaying={
 function update(){
 	vlc.status().then(function(status) {
 		var secondline=""
-		if(status.isVideo){
+		if(status.isVideo){	//if watching video
 			secondline=escapeHtml(status.date || "")+" Video";
-		}else{
+ 		}else if(status.streamtrack){	//if listening to audio stream
+			secondline=escapeHtml(status.streamtrack);
+		}else{	//meant for music
 			secondline=escapeHtml(status.artist+" - "+status.album);
 		}
 		var newPlaying={
@@ -42,7 +44,7 @@ function update(){
 		}
 		if(newPlaying.state!==nowPlaying.state || newPlaying.details!==nowPlaying.details || newPlaying.smallImageKey!==nowPlaying.smallImageKey || newPlaying.endTimestamp!==nowPlaying.endTimestamp){	//if anything has changed
 			console.log("Changes detected; sending to Discord")
-			if(status.state==="playing"){
+			if(status.state==="playing" && !status.streamtrack){	//Streams dont give audio length i think so omit end timestamp
 				newPlaying.startTimestamp=Date.now()/1000
 				newPlaying.endTimestamp=parseInt(parseInt(Date.now()/1000)+(parseInt(status.duration)-parseInt(status.time))/status.rate)
 			}else{
@@ -56,7 +58,7 @@ function update(){
 		//console.log(error) //uncomment for debug
 		var newPlaying={
 			state: "Stopped",
-			details: "What did you expect this to say?",
+			details: "Nothing is playing.",
 			largeImageKey: "vlc",
 			smallImageKey: "stopped",
 			instance: true,
