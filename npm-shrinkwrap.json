@@ -137,7 +137,7 @@
       }
     },
     "droopy-vlc": {
-      "version": "git+https://github.com/Pigpog/droopy-vlc.git#933c49e6862d19c5588e7b7bfa7c4bba061ac8f4",
+      "version": "git+https://github.com/Pigpog/droopy-vlc.git#5910af9c86330531c4a1596042b2895fca3fbf71",
       "requires": {
         "droopy-http": "0.0.1",
         "q": "1.0.1",
