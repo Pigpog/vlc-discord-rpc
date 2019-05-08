@@ -47,6 +47,8 @@ You can made vlc start with the rpc script. This can be made into a shortcut. Th
 ```
 node "path/to/rpc.js" withvlc
 ```
+On Linux systems that support it, a .desktop file is included in this repository. Edit the `Exec` line with the *absolute* path to rpc.js. This is ideal, because the rich presence is invisible and starts and stops with VLC.
+
 On Windows, create a new shortcut with that as the file location/target (replacing the path/to/ part with the actual file path). You can then set the icon to the VLC cone if you want by going into shortcut properties and hitting change icon.
 If you're on linux you probably know how to create shortcuts on your DE and it should be the same idea.
 
