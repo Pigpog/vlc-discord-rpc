@@ -1,0 +1,7 @@
+[Desktop Entry]
+Name=VLC With RPC
+GenericName=VLC
+Exec=node rpc.js withvlc
+Terminal=false
+Type=Application
+Categories=AudioVideo
