@@ -27,7 +27,7 @@ To do this, go to the Preferences menu (under Tools) and select `All` under `Sho
 
 Expand the Main interfaces category and choose Lua. Set the password under `Lua HTTP`.
 
-- Restart VLC for the changes to take affect
+- Restart VLC for the changes to take effect
 
 #### Configuration:
 
