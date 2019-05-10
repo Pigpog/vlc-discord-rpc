@@ -1,9 +1,11 @@
-const client = require('discord-rich-presence')('410664151334256663');	//last part is the app id for discord. Dont change.
-const config=require("./config.js");
+const config=require("./config.json");
+var richPresence = require('discord-rich-presence');	// Log into discord rich presence
+var client=richPresence(config.discordAppID);
 
 var vlcService = require("droopy-vlc"),
-    vlc = new vlcService("http://:"+config.vlcPass+"@"+config.vlcHost+":"+config.vlcPort);
-console.log("Running...")
+	vlc = new vlcService("http://:"+config.vlc.password+"@"+config.vlc.host+":"+config.vlc.port);
+
+console.log("Connecting to Discord...")
 
 function escapeHtml(text) {
   return text
@@ -14,6 +16,9 @@ function escapeHtml(text) {
       .replace(/(&quot;)/g,'"')
 }
 
+var timeInactive = 0;
+var loggedIn=true;
+
 //used to check if there have been updates
 var nowPlaying={
   state: '',
@@ -23,10 +28,20 @@ var nowPlaying={
   instance: true,
 }
 
+function sleep(){
+    client.disconnect();
+    loggedIn=false;
+}
+
+function wake(){
+    client=richPresence(config.discordAppID);
+    loggedIn=true;
+}
+
 //checks for changes in playback and if it finds any it updates your presence
 function update(){
 	vlc.status().then(function(status) {
-		var secondline=""
+		var secondline="";
 		if(status.isVideo){	//if watching video
 			secondline=escapeHtml(status.date || "")+" Video";
  		}else if(status.streamtrack){	//if listening to audio stream
@@ -41,11 +56,27 @@ function update(){
 		  smallImageKey: status.state,
 		  instance: true,
 		  endTimestamp:parseInt(parseInt(Date.now()/1000)+(parseInt(status.duration)-parseInt(status.time))/status.rate),
-		}
-		if(newPlaying.state!==nowPlaying.state || newPlaying.details!==nowPlaying.details || newPlaying.smallImageKey!==nowPlaying.smallImageKey || newPlaying.endTimestamp!==nowPlaying.endTimestamp){	//if anything has changed
+        }
+        if(status.state==="paused"){
+            delete newPlaying.endTimestamp
+            if(loggedIn){
+                timeInactive+=config.updateInterval;
+                if(timeInactive>config.sleepTime){
+                    console.log("Sleeping");
+                    sleep();
+                }
+            }
+        }else{
+            if(loggedIn===false){
+                console.log("Waking up")
+                wake();
+            }
+            timeInactive=0
+        }
+        if((newPlaying.endTimestamp!==nowPlaying.endTimestamp) && loggedIn){	//if anything has changed
 			console.log("Changes detected; sending to Discord")
 			if(status.state==="playing" && !status.streamtrack){	//Streams dont give audio length i think so omit end timestamp
-				newPlaying.startTimestamp=Date.now()/1000
+				newPlaying.startTimestamp=Math.floor(Date.now()/1000)
 				newPlaying.endTimestamp=parseInt(parseInt(Date.now()/1000)+(parseInt(status.duration)-parseInt(status.time))/status.rate)
 			}else{
 			  delete newPlaying.endTimestamp
@@ -55,36 +86,38 @@ function update(){
 			nowPlaying=newPlaying
 		}
 	}, function (error){	//if nothing is playing
-		//console.log(error) //uncomment for debug
 		var newPlaying={
 			state: "Stopped",
 			details: "Nothing is playing.",
 			largeImageKey: "vlc",
 			smallImageKey: "stopped",
 			instance: true,
-		}
-		client.updatePresence(newPlaying);
-	}
-	);
+        }
+        if(nowPlaying.smallImageKey!=="stopped"){
+            client.updatePresence(newPlaying);
+        }else{
+            nowPlaying=newPlaying;
+        }
+        if(loggedIn){
+            timeInactive+=config.updateInterval;
+        }
+        if(timeInactive>config.sleepTime){
+            sleep();
+        }
+	});
 }
 
-if(process.argv.includes("withvlc")){	//if you want vlc to open with
+if(process.argv.includes("withvlc")){	//if you want vlc to open with this script
 	const { spawn } = require('child_process');
-	var command=""
-	if(process.platform==="win32"){
-		command=config.windowsvlc
-	}else if(process.platform==="linux"){
-		command=config.linuxvlc
-	}else if(process.platform==="darwin"){
-		command=config.macvlc
-	}else{
-		command="vlc"
-	}
+	var command=(config.startupCommands[process.platform] || "vlc");	// Selects the appropriate command to start VLC
 	var child = spawn(command, [])	//launch vlc
 	child.on("exit", () => {
-		process.exit(0)
+		process.exit(0);
 	})
 }
 
-update()
-setInterval(update,5000)	//check for updates every 5000ms (5 seconds)
+client.on('connected', () => {
+    console.log('Connected to Discord');
+    update();
+    setInterval(update,config.updateInterval);	//check for updates every 5000ms (5 seconds)
+})
