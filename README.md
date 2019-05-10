@@ -31,9 +31,10 @@ Expand the Main interfaces category and choose Lua. Set the password under `Lua 
 
 #### Configuration:
 
-- Ensure that the `config.js` file is accurate, and contains your new password:
+- Ensure that the `config.json` file is accurate, and contains your new password:
 ```
-exports.vlcPass="your password here"
+"vlc":{
+    "password":"your password here",
 ```
 
 
