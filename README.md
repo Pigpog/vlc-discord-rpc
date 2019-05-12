@@ -44,13 +44,33 @@ Expand the Main interfaces category and choose Lua. Set the password under `Lua 
 - Start the rich presence script by running the command `node rpc.js` in the project directory
 
 # Automate it!
-You can made vlc start with the rpc script. This can be made into a shortcut. The command needed to do so is:
+
+Using the command-line argument, `withvlc`, the rich presence can be made more convenient.
+
 ```
 node "path/to/rpc.js" withvlc
 ```
-On Linux systems that support it, a .desktop file is included in this repository. Edit the `Exec` line with the *absolute* path to rpc.js. This is ideal, because the rich presence is invisible and starts and stops with VLC.
 
-On Windows, create a new shortcut with that as the file location/target (replacing the path/to/ part with the actual file path). You can then set the icon to the VLC cone if you want by going into shortcut properties and hitting change icon.
-If you're on linux you probably know how to create shortcuts on your DE and it should be the same idea.
+This command will start VLC alongside the rich presence. When VLC is closed, the rich presence will also close.
+
+#### On Linux systems that support it...
+A .desktop file is included in this repository. 
+This is the best experience, because it can be put on a desktop and the script runs in the background
+- You will need to edit the `Exec` line with the *absolute* path to rpc.js.
+
+#### Or...
+Create a shell script that runs the command and detaches.
+
+Example:
+```
+#!/usr/bin/bash
+node rpc.js withvlc &
+```
+
+#### On Windows...
+- Create a new shortcut to rpc.js
+- Right-click the shortcut and open it's properties menu
+- Edit the Target property, adding ` withvlc` to the end of it
+- (optional) Change the icon of the shortcut
 
 **PLEASE NOTE** To launch VLC, the script needs to know where VLC is. The config.js file contains what I think to be the defaults for most systems. You may need to modify this.
