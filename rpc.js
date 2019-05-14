@@ -73,7 +73,7 @@ function update(){
             }
             timeInactive=0
         }
-        if((newPlaying.endTimestamp!==nowPlaying.endTimestamp) && loggedIn){	//if anything has changed
+        if((newPlaying.state!==nowPlaying.state || newPlaying.details!==nowPlaying.details || newPlaying.smallImageKey!==nowPlaying.smallImageKey || newPlaying.endTimestamp!==nowPlaying.endTimestamp) && loggedIn){	//if anything has changed
 			console.log("Changes detected; sending to Discord")
 			if(status.state==="playing" && !status.streamtrack){	//Streams dont give audio length i think so omit end timestamp
 				newPlaying.startTimestamp=Math.floor(Date.now()/1000)
