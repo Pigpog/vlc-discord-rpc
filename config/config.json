@@ -1,18 +1,18 @@
 {
-    "startupCommands":{
-        "win32":            "C:/Program Files/VideoLAN/VLC/vlc.exe",
-        "linux":            "vlc",
-        "unix":             "vlc",
-        "darwin":           "/Applications/VLC.app/Contents/MacOS/VLC"
-    },
-    "discord": {
-        "appId":     "410664151334256663",
-        "updateInterval":   5000,
-        "sleepTime":        10000
-    },
-    "vlc": {
-        "password":         "rosebud",
-        "port":             8080,
-        "host":             "localhost"
-    }
+	"startupCommands": {
+		"win32": "C:/Program Files/VideoLAN/VLC/vlc.exe",
+		"linux": "vlc",
+		"unix": "vlc",
+		"darwin": "/Applications/VLC.app/Contents/MacOS/VLC"
+	},
+	"rpc": {
+		"id": "410664151334256663",
+		"updateInterval": 5000,
+		"sleepTime": 10000
+	},
+	"vlc": {
+		"password": "rosebud",
+		"port": 8080,
+		"host": "localhost"
+	}
 }
