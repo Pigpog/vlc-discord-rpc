@@ -5,7 +5,7 @@
 	"main": "./src/app.js",
 	"dependencies": {
 		"discord-rich-presence": "0.0.8",
-		"vlc.js": "git+https://github.com/dylhack/vlc.js.git"
+		"vlc.js": "^1.1.0"
 	},
 	"devDependencies": {},
 	"scripts": {
