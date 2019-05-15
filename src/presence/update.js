@@ -10,7 +10,7 @@ const buildPresence = require("./format.js");
 var meta = {
   lastFileName: "",
   lastState: "",
-  loggedIn: true,
+  asleep: false,
   timeInactive: 0
 };
 
@@ -18,26 +18,24 @@ module.exports = client => {
   VLCClient.getStatus()
     .then(status => {
       if (status.state === "paused" || status.state === "stopped") {
-        if (meta.loggedIn) {
+        if (!meta.asleep) {
           meta.timeInactive += config.rpc.updateInterval;
           if (meta.timeInactive > config.rpc.sleepTime) {
             console.log("Sleeping");
-            client.disconnect();
-            meta.loggedIn = false;
+            meta.asleep = true;
           }
         }
       } else {
         meta.timeInactive = 0;
-        if (!meta.loggedIn) {
+        if (meta.asleep) {
           console.log("Waking");
-          client = rich(id);
-          meta.loggedIn = true;
+          meta.asleep = false;
         }
       }
       if (
         (status.information.category.meta.filename !== meta.lastFileName ||
           status.state !== meta.lastState) &&
-        meta.loggedIn
+        !meta.asleep
       ) {
         console.log("Changes detected.");
         client.updatePresence(buildPresence(status));
