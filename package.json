@@ -4,7 +4,7 @@
   "description": "Discord rich presence for VLC media player.",
   "main": "rpc.js",
   "scripts": {
-    "test": "node rpc.js"
+    "test": "node test.js"
   },
   "repository": {
     "type": "git",

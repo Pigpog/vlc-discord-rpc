@@ -3,7 +3,7 @@ var richPresence = require('discord-rich-presence');	// Log into discord rich pr
 var client=richPresence(config.discordAppID);
 
 var vlcService = require("droopy-vlc"),
-	vlc = new vlcService("http://:"+config.vlc.password+"@"+config.vlc.host+":"+config.vlc.port);
+	vlc = new vlcService("http://:"+encodeURIComponent(config.vlc.password)+"@"+config.vlc.host+":"+config.vlc.port);
 
 console.log("Connecting to Discord...")
 
