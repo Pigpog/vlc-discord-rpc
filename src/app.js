@@ -5,8 +5,8 @@
 const config = require("../config/config.json");
 const update = require("./presence/update.js");
 const { spawn } = require("child_process");
-const rich = require("discord-rich-presence");
-const RPCClient = rich(config.rpc.id).on("connected", () => {
+const RPC = require("discord-rich-presence");
+const RPCClient = RPC(config.rpc.id).on("connected", () => {
 	console.log("Connected");
 	update(RPCClient);
 	setInterval(update, config.rpc.updateInterval, RPCClient); //check for updates repeatedly
