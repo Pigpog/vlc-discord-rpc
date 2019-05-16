@@ -4,7 +4,7 @@
  */
 const { spawn } = require("child_process");
 const config = require("../config/config.json");
-const RPC = require("./rpc/Client.js");
+const RPC = require("./rpc/client.js");
 const logger = require("./helpers/logger.js");
 const log = logger("VLC", "YELLOW");
 
