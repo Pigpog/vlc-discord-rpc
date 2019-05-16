@@ -2,19 +2,23 @@
  * Starting point for
  * vlc-discord-rpc
  */
+const { spawnSync } = require("child_process");
 const config = require("../config/config.json");
-const update = require("./presence/update.js");
-const { spawn } = require("child_process");
-const RPC = require("discord-rich-presence");
-const RPCClient = RPC(config.rpc.id).on("connected", () => {
-	console.log("Connected");
-	update(RPCClient);
-	setInterval(update, config.rpc.updateInterval, RPCClient); //check for updates repeatedly
-});
+const begin = require("./rpc/Client.js");
+const logger = require("./helpers/logger.js");
+const log = logger("VLC", "YELLOW");
 
 if (process.argv.includes("withvlc")) {
 	var command = config.startupCommands[process.platform] || "vlc";
-	spawn(command, []).on("exit", () => {
-		process.exit(0);
-	});
+	var child = spawnSync(command, []);
+	if (child.error) {
+		log("Failed to launch; " + err.message);
+	} else {
+		child.on("exit", () => {
+			process.exit(0);
+		});
+		begin(true);
+	}
+} else {
+	begin(true);
 }
