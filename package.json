@@ -17,11 +17,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/pigpog/vlc-discord-rpc.git"
+    "url": "git+https://github.com/Pigpog/vlc-discord-rpc.git"
   },
   "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "author": "Pigpog",
+  "contributors": [{
+  	"name": "dylhack",
+	"email": "dylhack@gmail.com"
+  }],
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/Pigpog/vlc-discord-rpc/issues"
   },
