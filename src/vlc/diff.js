@@ -24,9 +24,7 @@ module.exports = callback => {
 				// check stream
 				callback(
 					status,
-					status.information.category.meta
-						.now_playing
-				);
+					status.information.category.meta.now_playing !==last.now_playing);
 				// check song
 				callback(
 					status,
