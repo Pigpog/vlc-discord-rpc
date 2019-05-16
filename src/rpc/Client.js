@@ -19,25 +19,17 @@ function update(RPCClient) {
 			log("Change detected");
 			RPCClient.updatePresence(format(status));
 		} else {
-			if (
-				status.state == "paused" ||
-				status.state == "stopped"
-			) {
+			if (status.state == "paused" || status.state == "stopped") {
 				if (awake) {
-					timeInactive +=
-						config.rpc.updateInterval;
-					if (
-						timeInactive >
-						config.rpc.sleepTime
-					) {
-						log(
-							"VLC not playing; going to sleeping."
-						);
+					timeInactive += config.rpc.updateInterval;
+					if (timeInactive > config.rpc.sleepTime) {
+						log("VLC not playing; going to sleeping.");
 						awake = false;
 					}
 				} else {
 					log("VLC started; waking up.");
 					awake = true;
+					timeInactive=0;
 				}
 			}
 		}
