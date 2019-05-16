@@ -37,7 +37,7 @@ module.exports = status => {
 			smallImageKey: status.state,
 			instance: true,
 			endTimestamp:
-				status.state == "playing"
+				status.length != 0
 					? Math.floor((Date.now() / 1000 +(status.length - status.time)) / status.rate)
 					: undefined
 		};
