@@ -21,28 +21,25 @@ module.exports = callback => {
 	VLCClient.getStatus()
 		.then(status => {
 			if (status.information) {
-				// check stream
-				callback(
-					status,
-					status.information.category.meta.now_playing !==last.now_playing);
-				// check song
-				callback(
-					status,
-					status.information.category.meta
-						.filename != last.filename
-				);
-				// check state
-				callback(status, status.state != last.state);
-
+				let meta = status.information.category.meta;
+				if (meta.now_playing !== last.now_playing) {
+					// check stream
+					callback(status, true);
+				} else if (meta.filename != last.filename) {
+					// check song
+					callback(status, true);
+				} else if (status.state != last.state) {
+					// check state
+					callback(status, true);
+				} else callback(status, false);
 				last.filename = status.information
-					? status.information.category.meta
-							.filename
+					? meta.filename
 					: undefined;
-				last.now_playing = status.information.category.meta.now_playing; // stream
+				last.now_playing = meta.now_playing;
 				last.state = status.state;
-			}
+			} else callback(status);
 		})
 		.catch(err => {
-			log("Error, " + err.message);
+			log("Error, " + JSON.stringify(err.message));
 		});
 };

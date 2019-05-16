@@ -4,7 +4,7 @@
  */
 const { spawn } = require("child_process");
 const config = require("../config/config.json");
-const begin = require("./rpc/Client.js");
+const RPC = require("./rpc/Client.js");
 const logger = require("./helpers/logger.js");
 const log = logger("VLC", "YELLOW");
 
@@ -15,4 +15,3 @@ if (process.argv.includes("withvlc")) {
 		process.exit(0);
 	});	
 }
-begin(true);

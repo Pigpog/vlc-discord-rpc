@@ -15,8 +15,8 @@ const COLORS = {
 };
 
 module.exports = (filename, color = "WHITE") => {
-	let time = `${new Date().getHours()}:${new Date().getMinutes()}:${new Date().getSeconds()}`;
 	return (head, body) => {
+		let time = `${new Date().getHours()}:${new Date().getMinutes()}:${new Date().getSeconds()}`;
 		if (config.toggle) {
 			// {Object} msg [Message to log]
 			let msg = {
