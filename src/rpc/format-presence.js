@@ -1,5 +1,5 @@
 module.exports = status => {
-	var secondLine;
+	var secondLine = "";
 	var meta = status.information.category.meta;
 	if (
 		meta.filename.match(
