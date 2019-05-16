@@ -17,7 +17,6 @@ function update(RPCClient) {
 	diff((status, difference) => {
 		if (difference) {
 			log("Change detected");
-			log(JSON.stringify(format(status)));
 			RPCClient.updatePresence(format(status));
 		} else {
 			if (
