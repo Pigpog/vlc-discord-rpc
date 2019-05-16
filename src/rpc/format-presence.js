@@ -1,11 +1,7 @@
 module.exports = status => {
 	var secondLine = "";
 	var meta = status.information.category.meta;
-	if (
-		meta.filename.match(
-			/^.*\.(avi|AVI|wmv|WMV|flv|FLV|mpg|MPG|mp4|MP4|mkv|MKV)$/
-		)
-	) {
+	if (meta.filename.toLowerCase().match(/^.*\.(avi|wmv|flv|mpg|mp4|mkv)$/)) {
 		secondLine = (status.date || "") + " Video";
 	} else if (meta.now_playing) {
 		secondLine = meta.now_playing;

@@ -13,8 +13,6 @@ if (process.argv.includes("withvlc")) {
 	var child = spawn(command, []);
 	child.on("exit", () => {
 		process.exit(0);
-	});
-	begin(true);
-} else {
-	begin(true);
+	});	
 }
+begin(true);

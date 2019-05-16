@@ -21,7 +21,7 @@ module.exports = callback => {
 	VLCClient.getStatus()
 		.then(status => {
 			if (status.information) {
-				// check stream 
+				// check stream
 				callback(
 					status,
 					status.information.category.meta
@@ -40,8 +40,7 @@ module.exports = callback => {
 					? status.information.category.meta
 							.filename
 					: undefined;
-				last.now_playing =
-					status.information.category.meta.now_playing; // stream
+				last.now_playing = status.information.category.meta.now_playing; // stream
 				last.state = status.state;
 			}
 		})
