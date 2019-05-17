@@ -3,20 +3,17 @@ const config = require("../../config/config.json");
 const diff = require("../vlc/diff.js");
 const format = require("./format.js");
 const client = new RPC.Client({ transport: "ipc" });
-const logger = require("../helpers/logger.js");
-const log = logger("RPCClient", "BLUE");
+const log = require("../helpers/logger.js")("RPCClient");
 var awake = true;
 var timeInactive = 0;
 
 
 client.login({ clientId: config.rpc.id })
 	.then(() => {
-		log("Ready.");
+		log("Ready.", true);
 		setInterval(update, config.rpc.updateInterval);
 	})
-	.catch(err => {
-		log("Error, " + err.message);
-	});
+	.catch(log);
 
 // {Function} update
 // Responsible for updating the
@@ -25,10 +22,10 @@ client.login({ clientId: config.rpc.id })
 function update() {
 	diff((status, difference) => {
 		if (difference) {
-			log("Change detected");
+			log("Change detected", true);
 			client.setActivity(format(status));
 			if (!awake) {
-				log("VLC started; waking up.");
+				log("VLC started; waking up.", true);
 				awake = true;
 				client.setActivity(format(status));
 				timeInactive = 0;
@@ -36,12 +33,12 @@ function update() {
 		} else {
 			if (awake) {
 				if (status.state !== "playing") {
+					timeInactive += config.rpc.updateInterval;
 					if (timeInactive > config.rpc.sleepTime) {
-						log("VLC not playing; going to sleep.");
+						log("VLC not playing; going to sleep.", true);
 						awake = false;
 						client.clearActivity();
 					}
-					timeInactive += config.rpc.updateInterval;
 				}
 			}
 		}

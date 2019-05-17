@@ -4,8 +4,7 @@
  */
 const config = require("../../config/config.json");
 const VLC = require("vlc.js");
-const logger = require("../helpers/logger.js");
-const log = logger("VLCClient", "YELLOW");
+const log = require("../helpers/logger.js")("VLCClient");
 const VLCClient = new VLC.Client(config.vlc);
 // last check
 const last = {
@@ -24,12 +23,15 @@ module.exports = callback => {
 				let meta = status.information.category.meta;
 				if (meta.now_playing !== last.now_playing) {
 					// check stream
+					log(`Stream updated "${meta.now_playing}"`);
 					callback(status, true);
 				} else if (meta.filename != last.filename) {
 					// check song
+					log(`Song updated "${meta.filename}"`);
 					callback(status, true);
 				} else if (status.state != last.state) {
 					// check state
+					log(`State updated "${status.state}"`);
 					callback(status, true);
 				} else callback(status, false);
 				last.filename = status.information
@@ -39,7 +41,5 @@ module.exports = callback => {
 				last.state = status.state;
 			} else callback(status);
 		})
-		.catch(err => {
-			log("Error, " + JSON.stringify(err.message));
-		});
+		.catch(log);
 };
