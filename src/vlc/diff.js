@@ -2,7 +2,7 @@
  * Checks to see if VLC's
  * status updated
  */
-const config = require("../../config/config.json");
+const config = require("../../config/config.js");
 const VLC = require("vlc.js");
 const log = require("../helpers/logger.js")("VLCClient");
 const VLCClient = new VLC.Client(config.vlc);

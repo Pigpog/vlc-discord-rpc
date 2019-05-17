@@ -19,6 +19,6 @@ To begin, run `npm start` and VLC will launch with vlc-discord-rpc.
 `npm start detached` will launch seperate from VLC.
 
 ## Configuration (Optional)
-[config/config.json](./config/config.json) may need to be modified if:
+[config/config.js](./config/config.js) may need to be modified if:
  - Your system uses an abnormal VLC install
  - You have manually configured your VLC web interface

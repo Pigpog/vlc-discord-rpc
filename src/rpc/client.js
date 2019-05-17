@@ -1,5 +1,5 @@
 const RPC = require("discord-rpc");
-const config = require("../../config/config.json");
+const config = require("../../config/config.js");
 const diff = require("../vlc/diff.js");
 const format = require("./format.js");
 const client = new RPC.Client({ transport: "ipc" });
