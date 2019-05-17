@@ -22,10 +22,12 @@
   },
   "keywords": [],
   "author": "Pigpog",
-  "contributors": [{
-  	"name": "dylhack",
-	"email": "dylhack@gmail.com"
-  }],
+  "contributors": [
+    {
+      "name": "dylhack",
+      "email": "dylhack@gmail.com"
+    }
+  ],
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/Pigpog/vlc-discord-rpc/issues"

@@ -14,9 +14,7 @@ module.exports = status => {
 			if (meta.album) secondLine += " - " + meta.album;
 		}
 	}
-	console.log(status.state)
 	if (status.state == "stopped") {
-		console.log("stopped")
 		// if nothing is playing
 		return {
 			state: "Stopped",
