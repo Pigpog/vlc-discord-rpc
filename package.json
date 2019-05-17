@@ -7,10 +7,6 @@
     "discord-rpc": "^3.0.1",
     "vlc.js": "^1.2.0"
   },
-  "devDependencies": {
-    "nodemon": "^1.19.0",
-    "prettier": "^1.17.1"
-  },
   "scripts": {
     "test": "NODE_ENV=development nodemon ./src/app.js --watch ./src/",
     "start": "NODE_ENV=production node ./src/app.js",
