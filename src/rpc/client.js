@@ -32,16 +32,14 @@ function update() {
 			}
 		} else {
 			if (awake) {
-				if (status.state == "paused") {
+				if (status.state != "playing") {
 					timeInactive += config.rpc.updateInterval;
-				}else if(status.state=="stopped"){
-					timeInactive=config.rpc.sleepTime;
-				}
-				if (timeInactive >= config.rpc.sleepTime) {
-					log("VLC not playing; going to sleep.", true);
-					awake = false;
-					client.clearActivity();
-				}
+				        if (timeInactive >= config.rpc.sleepTime || status.state=="stopped") {
+					        log("VLC not playing; going to sleep.", true);
+					        awake = false;
+					        client.clearActivity();
+				        }
+                                }
 			}
 		}
 	});
