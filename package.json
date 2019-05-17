@@ -1,6 +1,6 @@
 {
   "name": "vlc-discord-rpc",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "Discord rich presence for VLC media player.",
   "main": "index.js",
   "dependencies": {
@@ -12,7 +12,7 @@
     "prettier": "^1.17.1"
   },
   "scripts": {
-    "test": "NODE_ENV=development nodemon ./src/app.js",
+    "test": "NODE_ENV=development nodemon ./src/app.js --watch ./src/",
     "start": "NODE_ENV=production node ./src/app.js",
     "run": "npm start"
   },
