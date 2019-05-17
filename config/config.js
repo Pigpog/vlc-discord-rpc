@@ -11,10 +11,10 @@ module.exports = {
 	"rpc": {
 		"id": "410664151334256663",
 		"updateInterval": 5000,
-		"sleepTime": 10000
+		"sleepTime": 30000
 	},
 	"vlc": {
-		"password": "" || randomPass(),
+		"password": ("" || randomPass()),
 		"port": 9090,
 		"address": "localhost"
 	}

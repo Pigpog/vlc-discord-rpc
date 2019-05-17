@@ -10,7 +10,8 @@ const VLCClient = new VLC.Client(config.vlc);
 const last = {
 	filename: "",
 	now_playing: "",
-	state: ""
+	state: "",
+	time: 0
 };
 
 /**
@@ -33,6 +34,8 @@ module.exports = callback => {
 					// check state
 					log(`State updated "${status.state}"`);
 					callback(status, true);
+				}else if(status.time - (last.time + (config.rpc.updateInterval/1000)) > 3 || last.time > status.time){
+					callback(status,true)
 				} else callback(status, false);
 				last.filename = status.information
 					? meta.filename
@@ -40,6 +43,7 @@ module.exports = callback => {
 				last.now_playing = meta.now_playing;
 			} else callback(status);
 			last.state = status.state;
+			last.time = status.time;
 		})
 		.catch(log);
 };

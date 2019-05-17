@@ -39,7 +39,7 @@ function update() {
 					        awake = false;
 					        client.clearActivity();
 				        }
-                                }
+                }
 			}
 		}
 	});
