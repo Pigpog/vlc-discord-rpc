@@ -1,8 +1,8 @@
 {
 	"startupCommands": {
 		"win32": "C:/Program Files/VideoLAN/VLC/vlc.exe",
-		"linux": "vlc",
-		"unix": "vlc",
+		"linux": "/usr/bin/vlc",
+		"unix": "/usr/bin/vlc",
 		"darwin": "/Applications/VLC.app/Contents/MacOS/VLC"
 	},
 	"rpc": {
@@ -12,7 +12,7 @@
 	},
 	"vlc": {
 		"password": "rosebud",
-		"port": 8080,
-		"host": "localhost"
+		"port": 9090,
+		"address": "localhost"
 	}
 }
