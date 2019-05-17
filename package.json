@@ -12,8 +12,9 @@
     "prettier": "^1.17.1"
   },
   "scripts": {
-    "test": "npm start",
-    "start": "node ./src/app.js"
+    "test": "NODE_ENV=development nodemon ./src/app.js",
+    "start": "NODE_ENV=production node ./src/app.js",
+    "run": "npm start"
   },
   "repository": {
     "type": "git",
