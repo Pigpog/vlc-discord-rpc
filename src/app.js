@@ -13,7 +13,6 @@ if (!process.argv.includes("detached")) {
 	// HACK: set config.vlc.address to your friends VLC hostname
 	// in the config to display their songs on your presence.
 	var child = spawn(command, ["--extraintf", "http", "--http-host", config.vlc.address, "--http-password", config.vlc.password, "--http-port", config.vlc.port]);
-	console.log(config.vlc.password)
 	child.on("exit", () => {
 		log("VLC closed, closing.", true);
 		process.exit(0);
