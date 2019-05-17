@@ -1,7 +1,0 @@
-[Desktop Entry]
-Name=VLC With RPC
-GenericName=VLC
-Exec=node /path/to/rpc.js withvlc # replace /path/to/ with the absolute path
-Terminal=false
-Type=Application
-Categories=AudioVideo

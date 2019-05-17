@@ -1,30 +1,32 @@
 {
   "name": "vlc-discord-rpc",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "Discord rich presence for VLC media player.",
-  "main": "rpc.js",
+  "main": "index.js",
+  "dependencies": {
+    "discord-rpc": "^3.0.1",
+    "vlc.js": "^1.2.0"
+  },
   "scripts": {
-    "test": "node test.js"
+    "test": "NODE_ENV=development nodemon ./src/app.js --watch ./src/",
+    "start": "NODE_ENV=production node ./src/app.js",
+    "run": "npm start"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Pigpog/vlc-discord-rpc.git"
   },
-  "keywords": [
-    "discord",
-    "vlc",
-    "rpc"
-  ],
+  "keywords": [],
   "author": "Pigpog",
+  "contributors": [
+    {
+      "name": "dylhack",
+      "email": "dylhack@gmail.com"
+    }
+  ],
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/Pigpog/vlc-discord-rpc/issues"
   },
-  "homepage": "https://github.com/Pigpog/vlc-discord-rpc#readme",
-  "dependencies": {
-    "discord-rich-presence": "0.0.7",
-    "discord-rpc": "^3.0.0",
-    "discord.js": "^11.3.2",
-    "droopy-vlc": "git+https://github.com/Pigpog/droopy-vlc.git"
-  }
+  "homepage": "https://github.com/Pigpog/vlc-discord-rpc#readme"
 }
