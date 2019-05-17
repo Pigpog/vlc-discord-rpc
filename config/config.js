@@ -1,4 +1,7 @@
-{
+function randomPass() {
+	return (Math.random().toString(36).slice(-8));
+}
+module.exports = {
 	"startupCommands": {
 		"win32": "C:/Program Files/VideoLAN/VLC/vlc.exe",
 		"linux": "/usr/bin/vlc",
@@ -11,7 +14,7 @@
 		"sleepTime": 10000
 	},
 	"vlc": {
-		"password": "",
+		"password": "" || randomPass(),
 		"port": 9090,
 		"address": "localhost"
 	}
