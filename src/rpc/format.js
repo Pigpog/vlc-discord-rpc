@@ -1,10 +1,7 @@
 module.exports = status => {
 	var secondLine = "";
 	var meta = status.information.category.meta;
-	if (meta.filename
-		.toLowerCase()
-		.match(/^.*\.(avi|wmv|flv|mpg|mp4|mkv)$/)
-	) {
+	if (meta.filename.toLowerCase().match(/^.*\.(avi|wmv|flv|mpg|mp4|mkv)$/)) {
 		// if a video
 		secondLine = (status.date || "") + " Video";
 	} else if (meta.now_playing) {
@@ -17,7 +14,9 @@ module.exports = status => {
 			if (meta.album) secondLine += " - " + meta.album;
 		}
 	}
+	console.log(status.state)
 	if (status.state == "stopped") {
+		console.log("stopped")
 		// if nothing is playing
 		return {
 			state: "Stopped",

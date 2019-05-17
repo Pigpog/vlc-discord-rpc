@@ -26,19 +26,21 @@ function update() {
 			client.setActivity(format(status));
 			if (!awake) {
 				log("VLC started; waking up.", true);
-				awake = true;
 				client.setActivity(format(status));
+				awake = true;
 				timeInactive = 0;
 			}
 		} else {
 			if (awake) {
-				if (status.state !== "playing") {
+				if (status.state == "paused") {
 					timeInactive += config.rpc.updateInterval;
-					if (timeInactive > config.rpc.sleepTime) {
-						log("VLC not playing; going to sleep.", true);
-						awake = false;
-						client.clearActivity();
-					}
+				}else if(status.state=="stopped"){
+					timeInactive=config.rpc.sleepTime;
+				}
+				if (timeInactive >= config.rpc.sleepTime) {
+					log("VLC not playing; going to sleep.", true);
+					awake = false;
+					client.clearActivity();
 				}
 			}
 		}

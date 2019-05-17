@@ -38,8 +38,8 @@ module.exports = callback => {
 					? meta.filename
 					: undefined;
 				last.now_playing = meta.now_playing;
-				last.state = status.state;
 			} else callback(status);
+			last.state = status.state;
 		})
 		.catch(log);
 };
