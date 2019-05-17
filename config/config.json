@@ -11,7 +11,7 @@
 		"sleepTime": 10000
 	},
 	"vlc": {
-		"password": "rosebud",
+		"password": "",
 		"port": 9090,
 		"address": "localhost"
 	}
