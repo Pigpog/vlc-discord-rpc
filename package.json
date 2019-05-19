@@ -5,11 +5,12 @@
   "main": "index.js",
   "dependencies": {
     "discord-rpc": "^3.0.1",
+    "npm": "^6.9.0",
     "vlc.js": "^1.2.0"
   },
   "scripts": {
     "test": "NODE_ENV=development nodemon ./src/app.js --watch ./src/",
-    "start": "NODE_ENV=production node ./src/app.js",
+    "start": "node ./src/app.js",
     "run": "npm start"
   },
   "repository": {
