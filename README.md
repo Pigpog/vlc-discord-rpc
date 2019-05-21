@@ -22,3 +22,6 @@ To begin, run `npm start` and VLC will launch with vlc-discord-rpc.
 [config/config.js](./config/config.js) may need to be modified if:
  - Your system uses an abnormal VLC install
  - You have manually configured your VLC web interface
+
+## Contact us
+Join us on [Discord.](https://discord.gg/XkqW2Fd)
