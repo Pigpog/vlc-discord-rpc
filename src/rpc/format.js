@@ -14,10 +14,10 @@ module.exports = status => {
 		details: meta.title || meta.filename,
 		largeImageKey: "vlc",
 		smallImageKey: status.state,
-		smallImageText:"Volume: "+Math.ceil(status.volume/2.56)+"%",
+		smallImageText:"Volume: "+Math.round(status.volume/2.56)+"%",
 		instance: true,
 	};
-	if (meta.filename.toLowerCase().match(/^.*\.(avi|wmv|flv|mpg|mp4|mkv)$/)) { // video
+	if (status.stats.decodedvideo > 0) { // video
 		// if a tv show
 		if(meta.showName) output.details = meta.showName;
 		if(meta.episodeNumber){
@@ -36,7 +36,7 @@ module.exports = status => {
 		output.state = meta.artist;
 		// if the song is part of an album
 		if (meta.album) output.state += " - " + meta.album;
-		// display which track of the album it is
+		// display track #
 		if (meta.track_number && meta.track_total) {
 			output.partySize = parseInt(meta.track_number);
 			output.partyMax = parseInt(meta.track_total);

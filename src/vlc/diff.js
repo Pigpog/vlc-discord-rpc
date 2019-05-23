@@ -35,8 +35,12 @@ module.exports = callback => {
 					log(`State updated "${status.state}"`);
 					callback(status, true);
 				}else if(status.time - (last.time + (config.rpc.updateInterval/1000)) > 3 || last.time > status.time){
+					// check time
+					log(`Time updated "${status.time}"`);
 					callback(status,true)
 				}else if(status.volume!=last.volume){
+					// check volume
+					log(`Volume updated "${status.volume}"`);
 					callback(status,true)
 					last.volume=status.volume;
 				} else callback(status, false);
