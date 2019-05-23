@@ -14,8 +14,8 @@ module.exports = {
 		"sleepTime": 30000
 	},
 	"vlc": {
-		"password": ("" || randomPass()),
-		"port": 9090,
+		"password": ("rosebud" || randomPass()),
+		"port": 8080,
 		"address": "localhost"
 	}
 }

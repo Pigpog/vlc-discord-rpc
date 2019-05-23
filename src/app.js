@@ -5,7 +5,7 @@
 const { spawn } = require("child_process");
 const config = require("../config/config.js");
 const RPC = require("./rpc/client.js");
-const log = require("./helpers/logger.js")("App")
+const log = require("./helpers/logger.js")("App");
 
 
 if (!process.argv.includes("detached")) {
@@ -18,6 +18,6 @@ if (!process.argv.includes("detached")) {
 		process.exit(0);
 	});
 	child.on("error", (e)=>{
-		process.exit(0)
+		process.exit(0);
 	})
 }

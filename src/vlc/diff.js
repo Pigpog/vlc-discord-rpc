@@ -36,6 +36,9 @@ module.exports = callback => {
 					callback(status, true);
 				}else if(status.time - (last.time + (config.rpc.updateInterval/1000)) > 3 || last.time > status.time){
 					callback(status,true)
+				}else if(status.volume!=last.volume){
+					callback(status,true)
+					last.volume=status.volume;
 				} else callback(status, false);
 				last.filename = status.information
 					? meta.filename

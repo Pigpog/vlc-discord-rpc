@@ -15,10 +15,10 @@ client.login({ clientId: config.rpc.id })
 	})
 	.catch(log);
 
-// {Function} update
-// Responsible for updating the
-// user's presence. Everything
-// happens here
+/** {Function} update
+/ Responsible for updating the
+/ user's presence.
+*/
 function update() {
 	diff((status, difference) => {
 		if (difference) {
@@ -34,11 +34,11 @@ function update() {
 			if (awake) {
 				if (status.state != "playing") {
 					timeInactive += config.rpc.updateInterval;
-				        if (timeInactive >= config.rpc.sleepTime || status.state=="stopped") {
-					        log("VLC not playing; going to sleep.", true);
-					        awake = false;
-					        client.clearActivity();
-				        }
+					if (timeInactive >= config.rpc.sleepTime || status.state=="stopped") {
+						log("VLC not playing; going to sleep.", true);
+						awake = false;
+						client.clearActivity();
+					}
                 }
 			}
 		}
