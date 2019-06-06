@@ -18,6 +18,7 @@ if (!process.argv.includes("detached")) {
 		process.exit(0);
 	});
 	child.on("error", (e)=>{
-		process.exit(0);
+		console.log("An error occurred when launching VLC");
+		process.exit(1);
 	})
 }
