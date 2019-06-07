@@ -15,9 +15,10 @@ client.login({ clientId: config.rpc.id })
 	})
 	.catch(log);
 
-/** {Function} update
-/ Responsible for updating the
-/ user's presence.
+/** 
+ * @function update
+ * Responsible for updating the
+   user's presence.
 */
 function update() {
 	diff((status, difference) => {

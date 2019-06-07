@@ -3,7 +3,7 @@ function randomPass() {
 }
 module.exports = {
 	"startupCommands": {
-		"win32": "C:/Program Files/VideoLAN/VLC/vlc.exe",
+		"win32": "C:/Program Files (x86)/VideoLAN/VLC/vlc.exe",
 		"linux": "/usr/bin/vlc",
 		"unix": "/usr/bin/vlc",
 		"darwin": "/Applications/VLC.app/Contents/MacOS/VLC"
@@ -14,7 +14,7 @@ module.exports = {
 		"sleepTime": 30000
 	},
 	"vlc": {
-		"password": ("" || randomPass()),
+		"password": "" || randomPass(), // Enter password between the quotes
 		"port": 9090,
 		"address": "localhost"
 	}
