@@ -28,5 +28,10 @@
   "bugs": {
     "url": "https://github.com/Pigpog/vlc-discord-rpc/issues"
   },
-  "homepage": "https://github.com/Pigpog/vlc-discord-rpc#readme"
+  "homepage": "https://github.com/Pigpog/vlc-discord-rpc#readme",
+  "devDependencies": {
+    "eslint": "^5.16.0",
+    "eslint-config-airbnb-base": "^13.1.0",
+    "eslint-plugin-import": "^2.17.3"
+  }
 }
