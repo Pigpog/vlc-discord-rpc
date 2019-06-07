@@ -9,21 +9,26 @@ Discord rich presence for VLC media player.
 - [VLC](https://www.videolan.org/index.html)
 - [Discord desktop client](https://discordapp.com/)
 
-## Setup
- - Install dependencies `npm i`
+## Start
+(Download the latest release)[https://github.com/Pigpog/vlc-discord-rpc/releases]
 
-## Run Normally
-To begin, run `npm start` and VLC will launch with vlc-discord-rpc.
+### Windows
+Launch start.bat file to launch VLC & vlc-discord-rpc, or create a nice shortcut to it.
 
-## Run Detached
+### Linux & MacOS
+Launch start.sh file to launch VLC & vlc-discord-rpc.
+
+## *Optional*
+
+### Run Detached
 `npm start detached` will launch separate from VLC.
 
-## Configuration (Optional)
+### Configuration
 [config/config.js](./config/config.js) may need to be modified if:
  - Your system uses an abnormal VLC install
  - You have manually configured your VLC web interface
 
-## Manual Configuration (Optional)
+#### Manual Configuration
 Please see [CONFIGURATION.md](./CONFIGURATION.md) to learn more
 
 ## Contact us
