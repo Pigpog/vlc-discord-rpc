@@ -23,6 +23,8 @@ Launch start.sh file to launch VLC & vlc-discord-rpc.
 ### Run Detached
 `npm start detached` will launch separate from VLC.
 
+Read more at [CONFIGURATION.md](./CONFIGURATION.md)
+
 ### Configuration
 [config/config.js](./config/config.js) may need to be modified if:
  - Your system uses an abnormal VLC install
