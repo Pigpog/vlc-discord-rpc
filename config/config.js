@@ -14,7 +14,7 @@ module.exports = {
 		"sleepTime": 30000
 	},
 	"vlc": {
-		"password": ("" || randomPass()),
+		"password": "" || randomPass(), // Enter password between the quotes
 		"port": 9090,
 		"address": "localhost"
 	}
