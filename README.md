@@ -10,7 +10,7 @@ Discord rich presence for VLC media player.
 - [Discord desktop client](https://discordapp.com/)
 
 ## Start
-(Download the latest release)[https://github.com/Pigpog/vlc-discord-rpc/releases]
+[Download the latest release](https://github.com/Pigpog/vlc-discord-rpc/releases)
 
 ### Windows
 Launch start.bat file to launch VLC & vlc-discord-rpc, or create a nice shortcut to it.
