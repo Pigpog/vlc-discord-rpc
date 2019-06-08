@@ -30,7 +30,6 @@
   },
   "homepage": "https://github.com/Pigpog/vlc-discord-rpc#readme",
   "devDependencies": {
-    "discord.js": "^11.5.1",
     "eslint": "^5.16.0",
     "eslint-config-airbnb-base": "^13.1.0",
     "eslint-plugin-import": "^2.17.3",
