@@ -8,7 +8,7 @@
     "vlc.js": "^1.2.0"
   },
   "scripts": {
-    "test": "NODE_ENV=development nodemon ./src/app.js --watch ./src/",
+    "test": "jest ./test/",
     "start": "node ./src/app.js",
     "run": "npm start"
   },
@@ -30,8 +30,10 @@
   },
   "homepage": "https://github.com/Pigpog/vlc-discord-rpc#readme",
   "devDependencies": {
+    "discord.js": "^11.5.1",
     "eslint": "^5.16.0",
     "eslint-config-airbnb-base": "^13.1.0",
-    "eslint-plugin-import": "^2.17.3"
+    "eslint-plugin-import": "^2.17.3",
+    "jest": "^24.8.0"
   }
 }
