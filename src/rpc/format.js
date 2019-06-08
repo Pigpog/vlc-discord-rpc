@@ -1,4 +1,3 @@
-
 module.exports = (status) => {
   // if playback is stopped
   if (status.state === 'stopped') {

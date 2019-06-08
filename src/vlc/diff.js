@@ -4,7 +4,6 @@
  */
 const VLC = require('vlc.js');
 const config = require('../../config/config.js');
-const log = require('../helpers/logger.js')('VLCClient');
 
 const VLCClient = new VLC.Client(config.vlc);
 // last check
@@ -25,26 +24,21 @@ module.exports = (callback) => {
         const { meta } = status.information.category;
         if (meta.now_playing !== last.now_playing) {
           // check stream
-          log(`Stream updated '${meta.now_playing}'`);
           callback(status, true);
         } else if (meta.filename !== last.filename) {
           // check song
-          log(`Song updated '${meta.filename}'`);
           callback(status, true);
         } else if (status.state !== last.state) {
           // check state
-          log(`State updated '${status.state}'`);
           callback(status, true);
         } else if (
           status.time - (last.time + config.rpc.updateInterval / 1000)
           > 3 || last.time > status.time
         ) {
           // check time
-          log(`Time updated '${status.time}'`);
           callback(status, true);
         } else if (status.volume !== last.volume) {
           // check volume
-          log(`Volume updated '${status.volume}'`);
           callback(status, true);
           last.volume = status.volume;
         } else callback(status, false);
@@ -54,5 +48,7 @@ module.exports = (callback) => {
       last.state = status.state;
       last.time = status.time;
     })
-    .catch(log);
+    .catch((err) => {
+      throw err;
+    });
 };
