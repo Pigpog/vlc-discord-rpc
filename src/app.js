@@ -8,7 +8,7 @@ const RPC = require("./rpc/client.js");
 const log = require("./helpers/logger.js")("App");
 
 
-if (!process.argv.includes("detached")) {
+if (!config.detach || !process.argv.includes("detached")) {
 	var command = config.startupCommands[process.platform] || "vlc";
 	// HACK: set config.vlc.address to your friends VLC hostname
 	// in the config to display their songs on your presence.

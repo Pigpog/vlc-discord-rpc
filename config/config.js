@@ -2,6 +2,7 @@ function randomPass() {
 	return (Math.random().toString(36).slice(-8));
 }
 module.exports = {
+	"detach": false,
 	"startupCommands": {
 		"win32": "C:/Program Files (x86)/VideoLAN/VLC/vlc.exe",
 		"linux": "/usr/bin/vlc",
