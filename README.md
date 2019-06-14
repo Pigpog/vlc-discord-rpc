@@ -14,6 +14,8 @@ Discord rich presence for VLC media player.
  2. Unzip the file
  3. Launch the start file.
 
+You may need to edit the path of VLC in [config/config.js](./config/config.js).
+
 ## *Optional*
 
 ### Run Detached
