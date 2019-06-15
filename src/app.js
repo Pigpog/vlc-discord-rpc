@@ -4,9 +4,10 @@
  */
 const { spawn } = require('child_process');
 const config = require('../config/config.js');
+const log = require('./helpers/lager.js');
 require('./rpc/client.js');
 
-
+log('Started, config', config);
 if (!process.argv.includes('detached')) {
   const command = config.startupCommands[process.platform] || 'vlc';
   // HACK: set config.vlc.address to your friends VLC hostname

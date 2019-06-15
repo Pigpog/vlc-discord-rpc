@@ -1,3 +1,5 @@
+const log = require('../helpers/lager.js');
+
 module.exports = (status) => {
   // if playback is stopped
   if (status.state === 'stopped') {
@@ -48,5 +50,6 @@ module.exports = (status) => {
   if (status.state === 'playing') {
     output.endTimestamp = end;
   }
+  log('Format output', output);
   return output;
 };

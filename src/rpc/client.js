@@ -2,6 +2,7 @@ const RPC = require('discord-rpc');
 const config = require('../../config/config.js');
 const diff = require('../vlc/diff.js');
 const format = require('./format.js');
+const log = require('../helpers/lager.js');
 
 const client = new RPC.Client({ transport: 'ipc' });
 let awake = true;
@@ -19,6 +20,7 @@ function update() {
       if (!awake) {
         client.setActivity(format(status));
         awake = true;
+        log('VLC updated');
         timeInactive = 0;
       }
     } else {
@@ -28,6 +30,7 @@ function update() {
         || status.state === 'stopped'
       ) {
         awake = false;
+        log('Going to sleep');
         client.clearActivity();
       }
     }

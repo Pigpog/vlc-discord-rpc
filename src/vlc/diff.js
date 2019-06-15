@@ -3,6 +3,7 @@
  * status updated
  */
 const VLC = require('vlc.js');
+const log = require('../helpers/lager.js');
 const config = require('../../config/config.js');
 
 const VLCClient = new VLC.Client(config.vlc);
@@ -24,21 +25,26 @@ module.exports = (callback) => {
         const { meta } = status.information.category;
         if (meta.now_playing !== last.now_playing) {
           // check stream
+          log('Stream updated');
           callback(status, true);
         } else if (meta.filename !== last.filename) {
           // check song
+          log('Filename updated');
           callback(status, true);
         } else if (status.state !== last.state) {
           // check state
+          log('VLC\'s state updated');
           callback(status, true);
         } else if (
           status.time - (last.time + config.rpc.updateInterval / 1000)
           > 3 || last.time > status.time
         ) {
           // check time
+          log('Playback time updated');
           callback(status, true);
         } else if (status.volume !== last.volume) {
           // check volume
+          log('Volume updated');
           callback(status, true);
           last.volume = status.volume;
         } else callback(status, false);
