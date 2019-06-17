@@ -5,7 +5,7 @@ pause() {
 }
 
 if ! [ -d "node_modules" ]; then
-    npm i
+    npm i --silent --production
     result=$?
     if [ $result -eq 127 ]; then
         echo ---------------------------------------------
