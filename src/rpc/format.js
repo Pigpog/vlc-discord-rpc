@@ -20,6 +20,11 @@ module.exports = (status) => {
     instance: true,
   };
   if (status.stats.decodedvideo > 0) { // video
+    // if youtube video
+    if(meta["YouTube Start Time"] !== undefined){
+      output.largeImageKey = "youtube";
+      output.largeImageText = meta.url;
+    }
     // if a tv show
     if (meta.showName) output.details = meta.showName;
     if (meta.episodeNumber) {
@@ -27,7 +32,9 @@ module.exports = (status) => {
       if (meta.seasonNumber) {
         output.state += ` - Season ${meta.seasonNumber}`;
       }
-    } else {
+    } else if (meta.artist){
+      output.state = meta.artist;
+    }else{
       output.state = `${(status.date || '')} Video`;
     }
   } else if (meta.now_playing) {
