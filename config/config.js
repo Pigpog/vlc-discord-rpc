@@ -20,6 +20,6 @@ module.exports = {
     password: '' || randomPass(), // Enter password between the semi-quotes
     port: 9090,
     address: 'localhost',
-    detached: false // Launch VLC seperately
+    detached: false, // Launch VLC seperately
   },
 };

@@ -23,18 +23,16 @@ function update() {
         log('VLC updated');
         timeInactive = 0;
       }
-		} else {
-			if (awake) {
-				if (status.state != "playing") {
-					timeInactive += config.rpc.updateInterval;
-					if (timeInactive >= config.rpc.sleepTime || status.state=="stopped") {
-						log("VLC not playing; going to sleep.", true);
-						awake = false;
-						client.clearActivity();
-					}
+    } else if (awake) {
+      if (status.state !== 'playing') {
+        timeInactive += config.rpc.updateInterval;
+        if (timeInactive >= config.rpc.sleepTime || status.state === 'stopped') {
+          log('VLC not playing; going to sleep.', true);
+          awake = false;
+          client.clearActivity();
         }
-			}
-		}
+      }
+    }
   });
 }
 
