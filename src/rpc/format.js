@@ -25,6 +25,7 @@ module.exports = (status) => {
       output.largeImageKey = 'youtube';
       output.largeImageText = meta.url;
     }
+
     // if a tv show
     if (meta.showName) output.details = meta.showName;
     if (meta.episodeNumber) {
@@ -49,6 +50,12 @@ module.exports = (status) => {
     if (meta.track_number && meta.track_total) {
       output.partySize = parseInt(meta.track_number, 10);
       output.partyMax = parseInt(meta.track_total, 10);
+    }
+    if(meta.url !== undefined){
+      if(meta.url.includes("https://soundcloud.com")){
+        output.largeImageKey = "soundcloud";
+        output.largeImageText = meta.url;
+      }
     }
   } else {
     output.state = status.state;
