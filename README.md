@@ -32,4 +32,4 @@ Read more at [CONFIGURATION.md](./CONFIGURATION.md)
 Please see [CONFIGURATION.md](./CONFIGURATION.md) to learn more
 
 ## Contact us
-Join us on [Discord.](https://discord.gg/XkqW2Fd)
+Join us on [Discord.](https://discord.gg/3Fu6KHd)
