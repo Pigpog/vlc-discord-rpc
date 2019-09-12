@@ -5,7 +5,7 @@ const path = require('path');
 const VLC = require('vlc.js');
 const { vlc } = require('../../config/config.js');
 
-const client = new VLC.Client(vlc);
+const client = new VLC.VLCClient(vlc);
 const destination = path.join(__dirname, '/../../logs/');
 const logs = [{
   details: {

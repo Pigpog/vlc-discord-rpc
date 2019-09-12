@@ -6,7 +6,7 @@ const VLC = require('vlc.js');
 const log = require('../helpers/lager.js');
 const config = require('../../config/config.js');
 
-const VLCClient = new VLC.Client(config.vlc);
+const VLCClient = new VLC.VLCClient(config.vlc);
 // last check
 const last = {
   filename: '',
