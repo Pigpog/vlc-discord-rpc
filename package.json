@@ -3,14 +3,10 @@
   "version": "2.2.0",
   "description": "Discord rich presence for VLC media player.",
   "main": "index.js",
-  "dependencies": {
-    "discord-rpc": "^3.0.1",
-    "vlc.js": "^3.0.2"
-  },
   "scripts": {
-    "test": "jest ./test/",
-    "start": "node ./src/app.js",
-    "run": "npm start"
+    "compile": "tsc",
+    "start": "node ./dist/app.js",
+    "test": "npm run compile && npm run start"
   },
   "repository": {
     "type": "git",
@@ -29,10 +25,13 @@
     "url": "https://github.com/Pigpog/vlc-discord-rpc/issues"
   },
   "homepage": "https://github.com/Pigpog/vlc-discord-rpc#readme",
+  "dependencies": {
+    "discord-rpc": "^3.1.0",
+    "vlc.js": "^3.2.5"
+  },
   "devDependencies": {
-    "eslint": "^5.16.0",
-    "eslint-config-airbnb-base": "^13.1.0",
-    "eslint-plugin-import": "^2.17.3",
-    "eslint-plugin-jest": "^22.6.4"
+    "@types/discord-rpc": "^3.0.2",
+    "@types/node": "^12.7.11",
+    "typescript": "^3.6.3"
   }
 }

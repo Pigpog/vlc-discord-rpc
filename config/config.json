@@ -1,0 +1,13 @@
+{
+  "ready": false,
+  "rpc": {
+    "id": "410664151334256663",
+    "updateInterval": 5000,
+    "sleepTime": 30000
+  },
+  "vlc": {
+    "password": "qwerty",
+    "port": 8080,
+    "address": "localhost"
+  }
+}
