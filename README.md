@@ -9,7 +9,7 @@ Join us on [Discord](https://discord.gg/3Fu6KHd).
 - [NodeJS](https://nodejs.org/en/)
 - [VLC](https://www.videolan.org/index.html)
 - [Discord desktop client](https://discordapp.com/)
-- [vlc-discord-rpc](https://github.com/Pigpog/vlc-discord-rpc/releases)
+- [vlc-discord-rpc](https://github.com/Pigpog/vlc-discord-rpc/releases) (see latest release)
 
 ## Setup
 Open VLC go-to preferences (`CTRL-P`) show all settings (bottom left) and search for 
