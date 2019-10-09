@@ -1,0 +1,1 @@
+start npm i -P

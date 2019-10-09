@@ -1,17 +1,21 @@
-# Manual Configuration Instructions
-Out of the box, vlc-discord-rpc is configured to work with minimal ambiguity by configuring VLC, on launch, with command-line arguments. In most cases, it is unnecessary to manually reconfigure.
+# Configuration
+If you want to get a little more advanced all the configurations are done in 
+[config.json](./config/config.json). All the tweaks for each program (VLC & Discord) are
+in their own object.
 
-Here are some possible scenarios where you may need to modify [config.js](./config/config.js):
-## Your system uses an abnormal VLC install
-Depending on the location of your VLC binary, you may need to modify the [startup command](./config/config.js#L5) for your operating system.
+## VLC
+ - **address**: This should always be localhost or 127.0.0.1 to access your VLC via http.
+ - **password**: Every VLC web interfaces MUST have a password so this is automatically gotten
+ If something does wrong vlc-discord-rpc will prompt you for the password.
+ - **port**: The port by default will be 8080, in any case you already have a webserver running
+ on that port the port will be 9090.
 
-This program needs to know where your VLC binary is installed so it can launch it (unless, of course, you are running in [detached mode](./README.md#run-detached)).
-
-## You have manually configured your VLC web interface
-You will need to modify the [VLC](./config/config.js#L16) password and port of config.js to match your VLC settings. By default, VLC uses port 8080.
-
-`"password": ("YOUR PASSWD HERE" || randomPass()),`
-## You want to run this rich presence client independent from VLC (Detached)
-If vlc-discord-rpc is not launching VLC for you, it can't tell VLC which port or password to use.
-
-You must [configure the VLC web interface](https://github.com/azrafe7/vlc4youtube/blob/master/instructions/how-to-enable-vlc-web-interface.md) (follow the 'troubleshooting' steps as well, then restart VLC) and modify config.js to match.
+## RPC
+RPC (Remote Procedure Call) is used to update the user's presence. Here are all the 
+configurations for interacting with it.
+- **id**: This is an applications ID this allows the presence to have metadata such as
+showing the VLC's logo and the pause/play icon.
+- **updateInterval**: (Based on the milliseconds) This is how frequently the user's 
+presence should be updated (this will increase resource usage).
+- **sleepTime**: (Based on the milliseconds) After x amount of milliseconds of nothing
+happening the communication will go-to sleep until VLC has changed.

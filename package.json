@@ -6,7 +6,8 @@
   "scripts": {
     "compile": "tsc",
     "start": "node ./dist/app.js",
-    "test": "npm run compile && npm run start"
+    "test": "npm run compile && npm run start",
+    "prepare": ""
   },
   "repository": {
     "type": "git",
