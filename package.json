@@ -27,7 +27,7 @@
   "homepage": "https://github.com/Pigpog/vlc-discord-rpc#readme",
   "dependencies": {
     "discord-rpc": "^3.1.0",
-    "vlc.js": "^3.2.5"
+    "vlc.js": "^3.2.7"
   },
   "devDependencies": {
     "@types/discord-rpc": "^3.0.2",

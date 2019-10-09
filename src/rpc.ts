@@ -12,8 +12,9 @@ import { getDifference }   from './vlc';
 
 const config = require(`${__dirname}/../config/config.json`);
 const client = new RPC.Client({ transport: 'ipc' });
+const log = console.log;
 
-let awake: boolean;
+let awake = true;
 let timeInactive: number;
 let ready: boolean;
 
@@ -23,13 +24,14 @@ export async function update() {
         await client.login({ clientId: config.rpc.id });
         ready = true;
     }
-    getDifference(async (status, difference) => {
+    await getDifference(async (status, difference) => {
         if (difference) {
             formatted = format(status);
             await client.setActivity(formatted);
             if (!awake) {
                 awake = true;
                 timeInactive = 0;
+                log(`Update detected, waking up.`);
             }
         } else if (awake) {
             if (status.state !== 'playing') {
@@ -37,13 +39,14 @@ export async function update() {
                 if (timeInactive >= config.rpc.sleepTime || status.state === 'stopped') {
                     awake = false;
                     await client.clearActivity();
+                    log(
+                        `Nothing has happened, going to sleep. ` +
+                        `(sleep time: ${config.rpc.sleepTime}ms)`
+                    );
                 }
             }
         }
     })
-        .catch((error: Error) => {
-            console.log(`Error: ${error.message}`);
-        });
 }
 
 function format(status: VLCStatus): Presence {

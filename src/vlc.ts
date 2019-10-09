@@ -9,11 +9,13 @@
 import { editVLCRC, VLCClient } from 'vlc.js';
 import { VLCError }             from 'vlc.js/lib/src/http/classes/VLCError';
 import { Meta, VLCStatus }      from 'vlc.js/lib/src/http/classes/VLCStatus';
+import { VLCCredentials }       from 'vlc.js/lib/src/http/Requester';
 import { ConfigItem }           from 'vlc.js/lib/src/util/VLCRCModifier';
 
 const config = require(`${__dirname}/../config/config.json`);
 const client = new VLCClient(config.vlc);
 const vlcRC = editVLCRC();
+const log = console.log;
 type DifferenceCallback = (status: VLCStatus, difference: boolean) => void;
 type ErrorCodes = 'EACCES' | 'EADDRINUSE' | 'ECONNREFUSED' | 'ECONNRESET' | 'EEXIST' | 'EISDIR'
     | 'EMFILE' | 'ENOENT' | 'ENOTDIR' | 'ENOTEMPTY' | 'ENOTFOUND' | 'EPERM' | 'EPIPE' | 'ETIMEDOUT';
@@ -55,14 +57,17 @@ export async function getDifference(callback: DifferenceCallback): Promise<void>
 
         // Checks the now_playing meta property, this is good for streams
         if (meta.now_playing !== last.now_playing) {
+            log('The stream has updated');
             callback(status, true);
 
             // Check the filename
         } else if (meta.filename !== last.filename) {
+            log('The filename has updated');
             callback(status, true);
 
             // Checking the state (paused / playing)
         } else if (status.state !== last.state) {
+            log('State has updated');
             callback(status, true);
 
             // Check the end timestamp
@@ -70,10 +75,12 @@ export async function getDifference(callback: DifferenceCallback): Promise<void>
             (3 < status.time - (last.time + config.rpc.updateInterval / 1000))
             || (last.time > status.time)
         ) {
+            log('The timestamp has updated');
             callback(status, true);
 
             // Check the volume
         } else if (status.volume !== last.volume) {
+            log('The volume has updated');
             callback(status, true);
             last.volume = status.volume;
         } else {
@@ -129,4 +136,8 @@ export function handleError(e: SystemError | VLCError | Error): void {
             console.log(`An unhandled error occurred: ${e.message}`);
         }
     }
+}
+
+export function update(details: VLCCredentials) {
+    client.update(details);
 }
