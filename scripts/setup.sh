@@ -1,1 +1,2 @@
 npm i -P
+exit
