@@ -1,0 +1,3 @@
+[submodule "lua-process"]
+	path = lua-process
+	url = https://github.com/mah0x211/lua-process/
