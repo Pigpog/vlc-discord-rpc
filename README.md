@@ -36,5 +36,39 @@ Copy the `send-presence` binary we compiled from discord-rich-presence-cli to th
 ### Ready to run!
 Open VLC media player. The extension should be listed as an option in the View menu of VLC. Play a song, and tick the box. See what happens!
 
+
+## Installation instructions for openSUSE Tumbleweed / Leap 15.2
+### Install LuaRocks
+```
+sudo zypper in lua53-luarocks
+```
+### Lua-Process
+Clone the source code:
+```
+git clone --recurse-submodules https://github.com/mah0x211/lua-process.git
+```
+Change into the source directory and get the Makefile from this repository:
+```
+cd lua-process
+mv Makefile Makefile.orig
+wget https://raw.githubusercontent.com/Pigpog/vlc-discord-rpc/lua/Makefile
+```
+Compile:
+```
+luarocks make --local
+```
+Copy the `process.so` file to `/usr/lib64/lua/5.3/`
+```
+sudo cp process.so /usr/lib64/lua/5.3/
+```
+### Install vlc-discord-rpc
+Replace `$VERSION` with `Tumbleweed` or `Leap_15.2` depending on what you use:
+```
+sudo zypper addrepo --refresh https://download.opensuse.org/repositories/home:/tux93:/vlc-discord-rpc/openSUSE_$VERSION/ vlc-discord-rpc
+sudo zypper in vlc-discord-rpc
+```
+And that's it!
+
+
 ## Gosh, that was a lot of work.
  - Have a healthy snack.
