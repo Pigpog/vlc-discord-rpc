@@ -1,3 +1,6 @@
 [submodule "lua-process"]
 	path = lua-process
 	url = https://github.com/mah0x211/lua-process/
+[submodule "discord-rich-presence-cli"]
+	path = discord-rich-presence-cli
+	url = https://github.com/Pigpog/discord-rich-presence-cli
