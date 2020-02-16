@@ -1,6 +1,6 @@
 #!/bin/bash
 
-dependencies='git luarocks lua make cmake'
+dependencies='git luarocks make cmake'
 libdependencies='libdiscord-rpc.so'
 
 depfailexit () {
