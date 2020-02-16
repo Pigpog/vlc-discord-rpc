@@ -1,21 +1,11 @@
 #!/bin/bash
 
-dependencies='git luarocks make cmake'
+dependencies='git luarocks lua make cmake'
 libdependencies='libdiscord-rpc.so'
-repositories='
- https://github.com/Pigpog/discord-rich-presence-cli
- https://github.com/mah0x211/lua-process
-'
 
 depfailexit () {
     printf "FAIL\n"
     printf "\n\nERROR: Missing dependency $1. No changes have been made.\n"
-    exit 1
-}
-
-repofailexit () {
-    printf "FAIL\n"
-    printf "\n\nERROR: Failed to clone repository:\n$1"
     exit 1
 }
 
@@ -50,33 +40,19 @@ do
     fi
 done
 
-printf "\nChecking for repositories\n"
-for repository in $repositories
-do
-    printf "  ${repository##*/} ...... "
-    if [ -d "${repository##*/}" ]
-    then
-        printf "OK\n"
-    else
-        printf "NO\n"
-        printf "Cloning $repository\n"
-        git clone --quiet --recurse-submodules $repository
-        if [ $? == 0 ] 
-        then
-            printf "OK\n"
-        else
-            echo $?
-            repofailexit $repository
-        fi
-    fi
-done
+printf "\nCloning vlc-discord-rpc\n"
+git clone --quiet --recurse-submodules https://github.com/Pigpog/vlc-discord-rpc -b lua
+
+if [ -d "vlc-discord-rpc" == 1]
+then
+    printf "\n\nERROR: Failed to clone vlc-discord-rpc\n"
+    exit 1
+fi
+
+cd vlc-discord-rpc
 
 printf "\nAll dependencies are in order."
-printf "\n\nCopying Makefile to lua-process\n"
-
-cp --remove-destination ./lua-processMakefile lua-process/Makefile
-
-printf "Starting build lua-process.\n"
+printf "\nStarting build lua-process.\n"
 
 cd lua-process
 
@@ -123,3 +99,6 @@ mkdir -p ~/.local/share/vlc/lua/extensions/modules
 cp send-presence ~/.local/share/vlc/lua/extensions/modules
 cd ..
 cp discordrichpresence.lua ~/.local/share/vlc/lua/extensions/
+cd ..
+
+printf "\n\nInstallation completed successfully."
