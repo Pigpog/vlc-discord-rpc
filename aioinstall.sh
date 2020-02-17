@@ -43,7 +43,7 @@ done
 printf "\nCloning vlc-discord-rpc\n"
 git clone --quiet --recurse-submodules https://github.com/Pigpog/vlc-discord-rpc -b lua
 
-if [ -d "vlc-discord-rpc" == 1]
+if [ -d "vlc-discord-rpc"==1 ]
 then
     printf "\n\nERROR: Failed to clone vlc-discord-rpc\n"
     exit 1
