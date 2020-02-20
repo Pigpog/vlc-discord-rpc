@@ -68,3 +68,53 @@ sudo zypper in vlc-discord-rpc
 ### Ready to run!
 Open VLC media player. The extension should be listed as an option in the View menu of VLC. Play a song, and tick the box. See what happens!
 
+## Troubleshooting
+If you successfully executed all the installation steps but the plugin cannot
+be activated, open Tools -> Messages in VLC, set the Verbosity to debug and try
+to enable the plugin while something is playing.
+
+A known issue is VLC looking for `process.so` in the wrong place:
+```
+lua debug: Activating extension 'Discord Rich Presence'
+lua debug: DISCORD RICH PRESENCE ACTIVATED
+lua warning: Error while running script
+~/.local/share/vlc/lua/extensions/discordrichpresence.lua, function activate():
+~/.local/share/vlc/lua/extensions/discordrichpresence.lua:46:
+module 'process' not found: no field package.preload['process']
+no file '~/.local/share/vlc/lua/modules/process.luac'
+no file '~/.local/share/vlc/lua/modules/process.lua'
+no file '~/.local/share/vlc/lua/modules/process.vle'
+no file '~/.local/share/vlc/lua/extensions/modules/process.luac'
+no file '~/.local/share/vlc/lua/extensions/modules/process.lua'
+no file '~/.local/share/vlc/lua/extensions/modules/process.vle'
+no file '~/.local/share/vlc/lua/modules/process.luac'
+no file '~/.local/share/vlc/lua/modules/process.lua'
+no file '~/.local/share/vlc/lua/modules/process.vle'
+no file '~/.local/share/vlc/lua/extensions/modules/process.luac'
+no file '~/.local/share/vlc/lua/extensions/modules/process.lua'
+no file '~/.local/share/vlc/lua/extensions/modules/process.vle'
+no file '/usr/lib64/vlc/lua/modules/process.luac'
+no file '/usr/lib64/vlc/lua/modules/process.lua'
+no file '/usr/lib64/vlc/lua/modules/process.vle'
+no file '/usr/lib64/vlc/lua/extensions/modules/process.luac'
+no file '/usr/lib64/vlc/lua/extensions/modules/process.lua'
+no file '/usr/lib64/vlc/lua/extensions/modules/process.vle'
+no file '/usr/share/vlc/lua/modules/process.luac'
+no file '/usr/share/vlc/lua/modules/process.lua'
+no file '/usr/share/vlc/lua/modules/process.vle'
+no file '/usr/share/vlc/lua/extensions/modules/process.luac'
+no file '/usr/share/vlc/lua/extensions/modules/process.lua'
+no file '/usr/share/vlc/lua/extensions/modules/process.vle'
+no file '/usr/share/lua/5.3/process.lua'
+no file '/usr/share/lua/5.3/process/init.lua'
+no file '/usr/lib64/lua/5.3/process.lua'
+no file '/usr/lib64/lua/5.3/process/init.lua'
+no file './process.lua'
+no file './process/init.lua'
+no file '/usr/lib64/lua/5.3/process.so'
+no file '/usr/lib64/lua/5.3/loadall.so'
+no file './process.so'
+lua error: Could not activate extension!
+lua debug: Deactivating 'Discord Rich Presence'
+```
+A possible solution is to copy `process.so` to the indicated location: `/usr/lib64/lua/5.3/`
