@@ -14,6 +14,7 @@ following:
 #### Make sure the build dependencies are installed
 * git
 * luarocks
+* lua-devel
 * make
 * cmake
 * gcc-c++
@@ -27,8 +28,6 @@ Change into the source directory, replace the original Makefile with ours and
 compile
 ```
 cd vlc-discord-rpc/lua-process/
-mv Makefile Makefile.orig
-mv ../lua-processMakefile Makefile
 luarocks make --local
 ```
 The resulting `process.so` file needs to be placed in the VLC modules
@@ -39,8 +38,8 @@ cp process.so ~/.local/share/vlc/lua/extensions/modules/
 ```
 #### Compile discord-rich-presence-cli
 This requires `discord-rpc` to be present, if there is no packaged version for
-your Distribution you can download the latest release [here](https://github.com/discordapp/discord-rpc/releases)
-and put the files from `linux-dynamic/lib` in `/usr/lib` and `linux-dynamic/include` in `/usr/include`.
+your Distribution you can download the latest release [here](https://github.com/discordapp/discord-rpc/releases),
+put the files from `linux-dynamic/lib` in `/usr/lib`, `linux-dynamic/include` in `/usr/include` and run `ldconfig`.
 
 Change into the source directory, compile and place the `send-presence` binary in the VLC modules directory:
 ```
