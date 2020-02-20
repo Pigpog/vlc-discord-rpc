@@ -19,7 +19,7 @@ for dependency in $dependencies
 do
     printf "  $dependency ...... "
     $dependency --version &> /dev/null
-    if [ $? == 0 ] 
+    if [ $? == 0 ]
     then
         printf "OK\n"
     else
@@ -32,7 +32,7 @@ for dependency in $libdependencies
 do
     printf "  $dependency ...... "
     ldconfig -p | grep $dependency &> /dev/null
-    if [ $? == 0 ] 
+    if [ $? == 0 ]
     then
         printf "OK\n"
     else
@@ -91,14 +91,18 @@ if [ -d "$HOME/.local/share/vlc/" ]
     then
         printf "OK\n"
     else
-        printf "\nERROR: Did not detect folder $HOME/.local/share/vlc/.\n"
-        exit 1
+        printf "\nERROR: Did not detect folder $HOME/.local/share/vlc/, will attempt to create it\n"
+        if mkdir -p ~/.local/share/vlc/lua/extensions/modules
+        then
+            printf "OK\n"
+        else
+            exit 1
+        fi
 fi
 
-mkdir -p ~/.local/share/vlc/lua/extensions/modules
 cp send-presence ~/.local/share/vlc/lua/extensions/modules
 cd ..
 cp discordrichpresence.lua ~/.local/share/vlc/lua/extensions/
 cd ..
 
-printf "\n\nInstallation completed successfully."
+printf "\nInstallation completed successfully.\n"
