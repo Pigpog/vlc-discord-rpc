@@ -109,6 +109,8 @@ end
 function start_presence()
   -- TODO: This path must change depending on OS
   cmd = exec(vlc.config.homedir() .. '/.local/share/vlc/lua/extensions/modules/send-presence', {})
+  -- Give the program our Application ID
+  cmd:stdin("410664151334256663")
   active = true;
 end
 
