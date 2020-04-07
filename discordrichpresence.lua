@@ -47,8 +47,10 @@ function activate()
   waitpid = require("process").waitpid;
   start_presence()
   -- Feed it some data
-  update_presence();  
+  update_presence();
 end
+
+
 
 -- Presumably called when vlc closes
 function close()
@@ -78,29 +80,42 @@ function input_changed()
   end
 end
 
+function meta_changed()
+  -- this gets called really often
+  -- like, really. this could happen a hundred times a second.
+  -- it complains when we dont have this callback though
+  -- vlc.msg.dbg("DISCORD RICH PRESENCE - Meta Changed");
+end
+
 function playing_changed(status)
   update_presence();
 end
 
-function meta_changed()
-  -- this gets called really often
-  -- like, really. this could happen a hundred times a second.
-  -- vlc.msg.dbg("DISCORD RICH PRESENCE - Meta Changed");
+function get_elapsed_time()
+  local input = vlc.object.input()
+  --VLC 3 : elapsed_time must be divided by 1000000 -> to seconds
+  --VLC2.1+ : Don't need the division -> already in seconds
+  local elapsed_time = math.floor(vlc.var.get(input, "time") / 1000000 * vlc.var.get(input,"rate"))
+
+  return elapsed_time
 end
 
 function update_presence()
   local item=vlc.item or vlc.input.item()
   local prefix="DISCORD RICH PRESENCE - "
-  cmd:stdin(item:metas()["title"] .. "\n" .. item:metas()["artist"] ..  " - " .. item:metas()["album"] ..  "\nvlc\n" .. (vlc.playlist or vlc.input.playlist()):status() .. "\n")
+  cmd:stdin(item:metas()["title"] .. "\n" .. item:metas()["artist"] ..  " - " .. item:metas()["album"] ..  "\nvlc\n" .. (vlc.playlist or vlc.input.playlist()):status() .. "\n" .. math.floor(item:duration() - get_elapsed_time()) + os.time() .. "\n")
 
-  -- DATA FOR USE IN FUTURE
+  -- DEBUG DATA
   vlc.msg.dbg(prefix.. "Duration: ".. item:duration())
   local item=vlc.playlist or vlc.input.playlist()
   vlc.msg.dbg(prefix.. "Status: ".. item:status())
   local item=vlc.volume or vlc.input.volume()
   vlc.msg.dbg(prefix.. "Volume: ".. item:get()) 
   local item=vlc
-  --vlc.msg.dbg(prefix.. "Time: ".. item:time()) 
+  vlc.msg.dbg(prefix.. "Time: ".. get_elapsed_time()) 
+  vlc.msg.dbg(prefix .. "Current Time:" .. os.time())
+  
+
   -- Read from stdout
   vlc.msg.dbg(cmd:stdout());
 end
@@ -109,8 +124,7 @@ end
 function start_presence()
   -- TODO: This path must change depending on OS
   cmd = exec(vlc.config.homedir() .. '/.local/share/vlc/lua/extensions/modules/send-presence', {})
-  -- Give the program our Application ID
-  cmd:stdin("410664151334256663")
+  cmd:stdin("410664151334256663\n")
   active = true;
 end
 
