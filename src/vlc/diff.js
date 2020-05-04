@@ -6,6 +6,9 @@ const VLC = require('vlc.js');
 const log = require('../helpers/lager.js');
 const config = require('../../config/config.js');
 
+// VLC server (8080) detection status
+var detectVlc = true;
+
 const VLCClient = new VLC.VLCClient(config.vlc);
 // last check
 const last = {
@@ -22,6 +25,7 @@ module.exports = (callback) => {
   VLCClient.getStatus()
     .then((status) => {
       if (status.information) {
+        detectVlc = true;
         const { meta } = status.information.category;
         if (meta.now_playing !== last.now_playing) {
           // check stream
@@ -55,6 +59,16 @@ module.exports = (callback) => {
       last.time = status.time;
     })
     .catch((err) => {
-      throw err;
+      if(err.code === "ECONNREFUSED") {
+        if(detectVlc) {
+          console.log("Failed to reach VLC. Is it open?");
+          // clear the rich presence by sending stopped state
+          callback({state:"stopped"}, false);
+        }
+      } else {
+        throw err;
+      }
+      // VLC isn't likely to be open anymore
+      detectVlc = false;
     });
 };
