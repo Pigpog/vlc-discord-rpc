@@ -53,7 +53,7 @@ module.exports = (status) => {
   } else {
     output.state = status.state;
   }
-  const end = Math.floor((Date.now() / 1000 + (status.length - status.time)) / status.rate);
+  const end = Math.floor(Date.now() / 1000 + ((status.length - status.time) / status.rate));
   if (status.state === 'playing') {
     output.endTimestamp = end;
   }
