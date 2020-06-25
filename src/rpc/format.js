@@ -3,7 +3,7 @@
  */
 
 const log = require('../helpers/lager.js');
-
+const config = require('../../config/config.js');
 module.exports = (status) => {
   // if playback is stopped
   if (status.state === 'stopped') {
@@ -50,7 +50,7 @@ module.exports = (status) => {
     // if the song is part of an album
     if (meta.album) output.state += ` - ${meta.album}`;
     // display track #
-    if (meta.track_number && meta.track_total) {
+    if (meta.track_number && meta.track_total && config.rpc.displayTrackNumber) {
       output.partySize = parseInt(meta.track_number, 10);
       output.partyMax = parseInt(meta.track_total, 10);
     }
@@ -58,7 +58,7 @@ module.exports = (status) => {
     output.state = status.state;
   }
   const end = Math.floor(Date.now() / 1000 + ((status.length - status.time) / status.rate));
-  if (status.state === 'playing') {
+  if (status.state === 'playing' && config.rpc.displayTimeRemaining) {
     output.endTimestamp = end;
   }
   log('Format output', output);

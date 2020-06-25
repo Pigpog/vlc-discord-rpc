@@ -1,3 +1,5 @@
+// See CONFIGURATION.md for more information
+
 function randomPass() {
   return Math.random()
     .toString(36)
@@ -15,11 +17,16 @@ module.exports = {
     id: '410664151334256663',
     updateInterval: 5000,
     sleepTime: 30000,
+    // Show the album track number when applicable. Example: (2 of 10)
+    displayTrackNumber: true,
+    displayTimeRemaining: true,
+    // Launch VLC seperately
+    detached: false,
   },
   vlc: {
-    password: '' || randomPass(), // Enter password between the semi-quotes
+    // Enter password between the semi-quotes
+    password: '' || randomPass(),
     port: 9090,
-    address: 'localhost',
-    detached: false, // Launch VLC seperately
+    address: 'localhost'
   },
 };

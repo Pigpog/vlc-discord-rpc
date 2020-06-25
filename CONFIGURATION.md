@@ -44,6 +44,21 @@ sleepTime: 30000
 ```
 When playback is paused, the number of milliseconds until the rich presence turns off ("sleeps"). The rich presence will come back when playback resumes. Note that whether or not to sleep is decided every updateInterval, which means that sleep will occur on sleepTime's nearest upper multiple of updateInterval.
 
+### displayTrackNumber
+Whether or not to display the album track number. Track numbers show up as "(# of #)" on the rich presence, and only when the metadata has both the track number and total number of tracks.
+```
+displayTrackNumber: true,
+```
+### displayTimeRemaining
+Whether or not to display the remaining time of the media you are playing.
+```
+displayTimeRemaining: true,
+```
+### detached
+Enable or disable detached mode.
+```
+detached: false, // Launch VLC seperately
+```
 ## vlc
 This section relates to how VLC is configured
 ### password
@@ -61,9 +76,4 @@ port: 9090
 This must be the hostname that VLC's web interface is listening on. Most likely does not need changing.
 ```
 address: 'localhost',
-```
-### detached
-Enable or disable detached mode.
-```
-detached: false, // Launch VLC seperately
 ```
