@@ -1,3 +1,7 @@
+/**
+ * Description: Decides what information to display based on the nature of the media (video, music, etc)
+ */
+
 const log = require('../helpers/lager.js');
 
 module.exports = (status) => {
