@@ -1,3 +1,7 @@
+/**
+ * Description: This file manages the Discord side of things.
+ */
+
 const RPC = require('discord-rpc');
 const config = require('../../config/config.js');
 const diff = require('../vlc/diff.js');
@@ -36,11 +40,28 @@ function update() {
   });
 }
 
-client
-  .login({ clientId: config.rpc.id })
-  .then(() => {
-    setInterval(update, config.rpc.updateInterval);
-  })
-  .catch((err) => {
-    throw err;
-  });
+client.on('ready', () => {
+  console.log('Logged in as', client.user.username);
+})
+
+// This is only a function because it makes it easier to retry
+function discordLogin () {
+  console.log("Connecting to Discord...")
+  client
+    .login({ clientId: config.rpc.id })
+    .then(() => {
+      setInterval(update, config.rpc.updateInterval);
+    })
+    .catch((err) => {
+      if(err.toString() === "Error: Could not connect") {
+        console.err("Failed to connect to Discord. Is your Discord client open? Retrying in 20 seconds...");
+        // Retry login
+        setTimeout(discordLogin, 20000)
+      } else {
+        console.err("An error occurred when connecting to Discord");
+        throw err;
+      }
+    });
+}
+
+discordLogin();
