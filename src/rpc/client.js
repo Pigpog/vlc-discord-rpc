@@ -21,10 +21,9 @@ function update() {
   diff((status, difference) => {
     if (difference) {
       client.setActivity(format(status));
+      console.log("Presence updated")
       if (!awake) {
-        client.setActivity(format(status));
         awake = true;
-        log('VLC updated');
         timeInactive = 0;
       }
     } else if (awake) {
