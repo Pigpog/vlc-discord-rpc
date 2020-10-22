@@ -53,11 +53,11 @@ function discordLogin () {
     })
     .catch((err) => {
       if(err.toString() === "Error: Could not connect") {
-        console.err("Failed to connect to Discord. Is your Discord client open? Retrying in 20 seconds...");
+        console.log("Failed to connect to Discord. Is your Discord client open? Retrying in 20 seconds...");
         // Retry login
         setTimeout(discordLogin, 20000)
       } else {
-        console.err("An error occurred when connecting to Discord");
+        console.log("An unknown error occurred when connecting to Discord");
         throw err;
       }
     });
