@@ -8,19 +8,19 @@ const config = require('../config/config.js');
 const log = require('./helpers/lager.js');
 require('./rpc/client.js');
 
+const platformDefaults= {
+	win32: 'C:/Program Files (x86)/VideoLAN/VLC/vlc.exe',
+	linux: '/usr/bin/vlc',
+	unix: '/usr/bin/vlc',
+	darwin: '/Applications/VLC.app/Contents/MacOS/VLC',
+};
+
 // Generates a random password
 function randomPass() {
   return Math.random()
     .toString(36)
     .slice(-8);
 }
-
-platformDefaults: {
-	win32: 'C:/Program Files (x86)/VideoLAN/VLC/vlc.exe',
-	linux: '/usr/bin/vlc',
-	unix: '/usr/bin/vlc',
-	darwin: '/Applications/VLC.app/Contents/MacOS/VLC',
-},
 
 // Use a random password if none is supplied
 if (config.vlc.password === "") config.vlc.password = randomPass();

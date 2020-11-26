@@ -3,7 +3,7 @@
 module.exports = {
 	// Overrides command used to launch VLC when in attached mode
 	// If blank, defaults are used
-  vlcPath="",
+  vlcPath: "",
   rpc: {
     id: '410664151334256663',
     updateInterval: 5000,
