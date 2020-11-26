@@ -1,9 +1,11 @@
 // See CONFIGURATION.md for more information
 
 module.exports = {
+
 	// Overrides command used to launch VLC when in attached mode
 	// If blank, defaults are used
   vlcPath: "",
+
   rpc: {
     id: '410664151334256663',
     updateInterval: 5000,
@@ -15,6 +17,7 @@ module.exports = {
     // Note: You must set a password
     detached: false,
   },
+
   vlc: {
     // If blank, a random password is used
     password: '',
