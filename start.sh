@@ -21,7 +21,3 @@ if ! [ -d "node_modules" ]; then
 fi
 
 npm start
-
-if ! [ $? -eq 0 ]; then
-    pause
-fi

@@ -10,6 +10,3 @@ if NOT EXIST node_modules (
 )
 ECHO Starting script...
 CALL npm start
-IF %ERRORLEVEL% EQU 1 (
-    START CMD /C "ECHO A problem occurred while launching vlc. && PAUSE"
-)
