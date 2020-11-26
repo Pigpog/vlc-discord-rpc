@@ -1,18 +1,9 @@
 // See CONFIGURATION.md for more information
 
-function randomPass() {
-  return Math.random()
-    .toString(36)
-    .slice(-8);
-}
-
 module.exports = {
-  startupCommands: {
-    win32: 'C:/Program Files/VideoLAN/VLC/vlc.exe',
-    linux: '/usr/bin/vlc',
-    unix: '/usr/bin/vlc',
-    darwin: '/Applications/VLC.app/Contents/MacOS/VLC',
-  },
+	// Overrides command used to launch VLC when in attached mode
+	// If blank, defaults are used
+  vlcPath="",
   rpc: {
     id: '410664151334256663',
     updateInterval: 5000,
@@ -20,13 +11,14 @@ module.exports = {
     // Show the album track number when applicable. Example: (2 of 10)
     displayTrackNumber: true,
     displayTimeRemaining: true,
-    // Launch VLC seperately
+    // If true, VLC will not be opened for you.
+    // Note: You must set a password
     detached: false,
   },
   vlc: {
-    // Enter password between the semi-quotes
-    password: '' || randomPass(),
-    port: 9090,
+    // If blank, a random password is used
+    password: '',
+    port: 8080,
     address: 'localhost'
   },
 };
