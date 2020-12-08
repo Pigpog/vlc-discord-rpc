@@ -18,7 +18,7 @@ module.exports = {
     detached: false,
     // Changes the big icon of the rich presence
     // Some of the available icons are: vlc, vlcflat, vlcblue, vlcneon, vlcxmas
-    largeIcon: "vlcxmas",
+    largeIcon: "vlc",
   },
 
   vlc: {
