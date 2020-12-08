@@ -10,7 +10,7 @@ module.exports = (status) => {
     return {
       state: 'Stopped',
       details: 'Nothing is playing.',
-      largeImageKey: 'vlc',
+      largeImageKey: config.rpc.largeIcon,
       smallImageKey: 'stopped',
       instance: true,
     };
@@ -18,7 +18,7 @@ module.exports = (status) => {
   const { meta } = status.information.category;
   const output = {
     details: meta.title || meta.filename,
-    largeImageKey: 'vlc',
+    largeImageKey: config.rpc.largeIcon,
     smallImageKey: status.state,
     smallImageText: `Volume: ${Math.round(status.volume / 2.56)}%`,
     instance: true,
