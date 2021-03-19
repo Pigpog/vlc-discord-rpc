@@ -44,7 +44,7 @@ module.exports = (status) => {
     }
   } else if (meta.now_playing) {
     // if a stream
-    output.state = meta.now_playing | "Stream";
+    output.state = meta.now_playing || "Stream";
   } else if (meta.artist) {
     // if in an album
     output.state = meta.artist;
