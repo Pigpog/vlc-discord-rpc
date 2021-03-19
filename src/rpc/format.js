@@ -23,7 +23,8 @@ module.exports = (status) => {
     smallImageText: `Volume: ${Math.round(status.volume / 2.56)}%`,
     instance: true,
   };
-  if (status.stats.decodedvideo > 0) { // video
+  // if video
+  if (status.stats.decodedvideo > 0) { 
     // if youtube video
     if (meta['YouTube Start Time'] !== undefined) {
       output.largeImageKey = 'youtube';
@@ -43,7 +44,7 @@ module.exports = (status) => {
     }
   } else if (meta.now_playing) {
     // if a stream
-    output.state = meta.now_playing;
+    output.state = meta.now_playing | "Stream";
   } else if (meta.artist) {
     // if in an album
     output.state = meta.artist;
@@ -58,7 +59,7 @@ module.exports = (status) => {
     output.state = status.state;
   }
   const end = Math.floor(Date.now() / 1000 + ((status.length - status.time) / status.rate));
-  if (status.state === 'playing' && config.rpc.displayTimeRemaining) {
+  if (status.state === 'playing' && config.rpc.displayTimeRemaining && status.length != 0) {
     output.endTimestamp = end;
   }
   log('Format output', output);
