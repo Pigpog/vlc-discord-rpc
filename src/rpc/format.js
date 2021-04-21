@@ -9,7 +9,7 @@ module.exports = (status) => {
   if (status.state === 'stopped') {
     return {
       state: 'Stopped',
-      details: 'Nothing is playing.',
+      details: 'Nothing is playing',
       largeImageKey: config.rpc.largeIcon,
       smallImageKey: 'stopped',
       instance: true,
