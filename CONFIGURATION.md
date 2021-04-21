@@ -15,40 +15,59 @@ vlcPath: "",
 ## rpc
 
 ### id
+
 ```
 id: '410664151334256663'
 ```
+
 The rich presence Application ID. This ID is specific to vlc-discord-rpc, and gives the rich presence its name ("VLC Media Player") and image assets (cone icon, playing icon, etc). Applications can be created on [this page](https://discord.com/developers/applications/me) for maximum customization.
 
 ### updateInterval
+
 ```
 updateInterval: 5000
 ```
+
 The number of milliseconds between queries to VLC for information about what is playing. Note that Discord only recieves updates if something changes. Also note that more frequent queries means more CPU usage.
 
 Change this setting to your own preference I guess.
 
 ### sleepTime
+
 ```
 sleepTime: 30000
 ```
+
 When playback is paused, the number of milliseconds until the rich presence turns off ("sleeps"). The rich presence will come back when playback resumes. Note that whether or not to sleep is decided every updateInterval, which means that sleep will occur on sleepTime's nearest upper multiple of updateInterval.
 
 ### displayTrackNumber
 Whether or not to display the album track number. Track numbers show up as "(# of #)" on the rich presence, and only when the metadata has both the track number and total number of tracks.
+
 ```
 displayTrackNumber: true,
 ```
+
 ### displayTimeRemaining
 Whether or not to display the remaining time of the media you are playing.
+
 ```
 displayTimeRemaining: true,
 ```
+
+### showStopped
+Display rich presence even when nothing is playing. This option entirely disables sleep.
+
+```
+showStopped: false,
+```
+
 ### detached
 Enable or disable detached mode.
+
 ```
 detached: false, // Launch VLC seperately
 ```
+
 ## vlc
 This section relates to how VLC is configured. In attached mode, VLC is launched with the parameters set here. In detached mode, these values must correspond to VLC's configuration.
 ### password
