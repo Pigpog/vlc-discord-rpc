@@ -29,11 +29,15 @@ function update() {
     } else if (awake) {
       if (status.state !== 'playing') {
         timeInactive += config.rpc.updateInterval;
-        if (timeInactive >= config.rpc.sleepTime || status.state === 'stopped') {
+        if ((timeInactive >= config.rpc.sleepTime) || (!config.rpc.showStopped && status.state === 'stopped')) {
           log('VLC not playing; going to sleep.', true);
           awake = false;
           client.clearActivity();
-        }
+        } else {
+	  console.log("Presence updated")
+	  client.setActivity(format(status));
+	  awake = false;
+	}
       }
     }
   });

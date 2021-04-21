@@ -13,6 +13,8 @@ module.exports = {
     // Show the album track number when applicable. Example: (2 of 10)
     displayTrackNumber: true,
     displayTimeRemaining: true,
+    // Keep rich presence when playback is stopped 
+    showStopped: false,
     // If true, VLC will not be opened for you.
     // Note: You must set a password
     detached: false,
