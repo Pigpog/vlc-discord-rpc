@@ -103,7 +103,7 @@ end
 function update_presence()
   local item=vlc.item or vlc.input.item()
   local prefix="DISCORD RICH PRESENCE - "
-  cmd:stdin(item:metas()["title"] .. "\n" .. item:metas()["artist"] ..  " - " .. item:metas()["album"] ..  "\nvlc\n" .. (vlc.playlist or vlc.input.playlist()):status() .. "\n" .. math.floor(item:duration() - get_elapsed_time()) + os.time() .. "\n")
+  cmd:stdin(item:metas()["title"] .. "\n" .. item:metas()["artist"] ..  " - " .. item:metas()["album"] ..  "\nvlc\n" .. (vlc.playlist or vlc.input.playlist()):status() .. "\n0\n" .. math.floor(item:duration() - get_elapsed_time()) + os.time() .. "\n")
 
   -- DEBUG DATA
   vlc.msg.dbg(prefix.. "Duration: ".. item:duration())
