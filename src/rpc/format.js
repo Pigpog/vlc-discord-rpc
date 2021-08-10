@@ -4,6 +4,7 @@
 
 const log = require('../helpers/lager.js');
 const config = require('../../config/config.js');
+const albumArt = require('../../config/art.json');
 module.exports = (status) => {
   // if playback is stopped
   if (status.state === 'stopped') {
@@ -18,7 +19,7 @@ module.exports = (status) => {
   const { meta } = status.information.category;
   const output = {
     details: meta.title || meta.filename,
-    largeImageKey: config.rpc.largeIcon,
+    largeImageKey: albumArt[meta.album] || config.rpc.largeIcon,
     smallImageKey: status.state,
     smallImageText: `Volume: ${Math.round(status.volume / 2.56)}%`,
     instance: true,
