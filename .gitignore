@@ -1,5 +1,6 @@
 .vscode/
 package-lock.json
+config/art.json
 # Logs
 logs
 *.log
