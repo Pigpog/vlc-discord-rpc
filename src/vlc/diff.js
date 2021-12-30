@@ -54,7 +54,7 @@ module.exports = (callback) => {
         } else callback(status, false);
         last.filename = status.information ? meta.filename : undefined;
         last.now_playing = meta.now_playing;
-      } else callback(status);
+      } else callback(status, last.state !== status.state);
       last.state = status.state;
       last.time = status.time;
     })
