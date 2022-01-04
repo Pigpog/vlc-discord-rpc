@@ -1,5 +1,6 @@
 {
   "name": "vlc-discord-rpc",
+  "type": "module",
   "version": "2.2.12",
   "description": "Discord rich presence for VLC media player.",
   "main": "index.js",

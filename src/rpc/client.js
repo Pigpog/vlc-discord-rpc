@@ -1,12 +1,11 @@
 /**
  * Description: This file manages the Discord side of things.
  */
-
-const RPC = require('discord-rpc');
-const config = require('../../config/config.js');
-const diff = require('../vlc/diff.js');
-const format = require('./format.js');
-const log = require('../helpers/lager.js');
+import RPC from 'discord-rpc';
+import * as config from '../../config/config.js';
+import diff from '../vlc/diff.js';
+import format from './format.js';
+import log from '../helpers/lager.js';
 
 const client = new RPC.Client({ transport: 'ipc' });
 let awake = true;
