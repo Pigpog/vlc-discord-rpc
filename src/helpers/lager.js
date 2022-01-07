@@ -5,7 +5,7 @@ import Client from 'vlc.js';
 import { vlc } from '../../config/config.js';
 
 const client = new Client(vlc.address, vlc.password);
-const destination = '/../../logs/';
+const destination = 'logs/';
 const logs = [{
   details: {
     arch: os.arch(),
