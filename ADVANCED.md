@@ -74,5 +74,9 @@ Heres a realistic example of a complete config/art.json file:
 }
 ```
 
-6. Run vlc-discord-rpc, and you should see the album art when listening to albums you've added. If no image is shown, make sure the album name you put
+6. Open the [config/config.js](./config/config.js) file in a text editor.
+Change the [id field](https://github.com/Pigpog/vlc-discord-rpc/blob/master/config/config.js#L10) to your new Application ID.
+You can find the ID in the General Information tab of the application page.
+
+7. Run vlc-discord-rpc, and you should see the album art when listening to albums you've added. If no image is shown, make sure the album name you put
 is exactly how it displays in VLC, case sensitive.
