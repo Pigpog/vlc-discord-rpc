@@ -2,6 +2,8 @@
 
 Discord rich presence for VLC media player.
 
+This repository should be considered abandoned. You will need to create your own Discord application now.
+
 ![Example](./example.png)
 
 Join us on [Discord](https://discord.gg/3Fu6KHd).
@@ -19,8 +21,9 @@ Join us on [Discord](https://discord.gg/3Fu6KHd).
  1. [Download the latest release for your platform](https://github.com/Pigpog/vlc-discord-rpc/releases)
   - If you download a bundle release, you will not need to install Node.JS/NPM
  2. Unzip the file
- 3. Launch the start file
- 4. Play media in the VLC window that opens
+ 3. Follow [these steps to create an Application](https://github.com/Pigpog/vlc-discord-rpc/blob/master/ADVANCED.md#instructions-1) (album art optional)
+ 4. Launch the start file
+ 5. Play media in the VLC window that opens
 
 ## Configuration
 
