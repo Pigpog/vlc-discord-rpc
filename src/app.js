@@ -2,13 +2,13 @@
  * Starting point for
  * vlc-discord-rpc
  */
-const { spawn } = require('child_process');
-const fs = require('fs');
-const config = require('../config/config.js');
-const log = require('./helpers/lager.js');
-require('./rpc/client.js');
+import { spawn } from 'child_process';
+import fs from 'fs';
+import * as config from '../config/config.js';
+import log from './helpers/lager.js';
+import './rpc/client.js';
 
-const platformDefaults= {
+const platformDefaults = {
 	win32: 'C:/Program Files/VideoLAN/VLC/vlc.exe',
 	// Alternative path to Windows VLC executable
 	winalt: 'C:/Program Files (x86)/VideoLAN/VLC/vlc.exe',
@@ -33,7 +33,7 @@ if (!(config.rpc.detached || process.argv.includes('detached'))) {
 	if(process.platform === "win32"){
 		if(!fs.existsSync(platformDefaults.win32)){
 			// Use alternative Windows path
-			platformDefaults.win32=platformDefaults.winalt;
+			platformDefaults.win32 = platformDefaults.winalt;
 		}
 	}
   const command = config.vlcPath || platformDefaults[process.platform] || 'vlc';

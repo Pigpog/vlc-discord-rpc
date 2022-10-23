@@ -1,11 +1,24 @@
 /**
  * Description: Decides what information to display based on the nature of the media (video, music, etc)
  */
+import log from '../helpers/lager.js';
+import fs from 'fs';
+import * as config from '../../config/config.js';
 
-const log = require('../helpers/lager.js');
-const config = require('../../config/config.js');
-const albumArt = require('../../config/art.json');
-module.exports = (status) => {
+let art = null;
+
+function getArt() {
+  if (art) {
+    return art
+  }
+  const data = fs.readFileSync(`${__dirname}/../../config/art.json`);
+  const dataStr = data.toString();
+  art = JSON.parse(dataStr);
+
+  return art;
+}
+
+export default function format(status) {
   // if playback is stopped
   if (status.state === 'stopped') {
     return {
@@ -17,6 +30,7 @@ module.exports = (status) => {
     };
   } // else
   const { meta } = status.information.category;
+  const albumArt = getArt();
   const output = {
     details: meta.title || meta.filename,
     largeImageKey: albumArt[meta.album] || config.rpc.largeIcon,

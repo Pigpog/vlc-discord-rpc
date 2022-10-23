@@ -2,14 +2,14 @@
  * Checks to see if VLC's
  * status updated
  */
-const VLC = require('vlc.js');
-const log = require('../helpers/lager.js');
-const config = require('../../config/config.js');
+import Client from 'vlc.js';
+import log from '../helpers/lager.js';
+import * as config from '../../config/config.js';
 
 // VLC server (8080) detection status
 var detectVlc = true;
 
-const VLCClient = new VLC.VLCClient(config.vlc);
+const VLCClient = new Client(config.vlc.address, config.vlc.password);
 // last check
 const last = {
   filename: '',
@@ -21,7 +21,7 @@ const last = {
 /**
  * @param {Function} callback<Object, Boolean>
  */
-module.exports = (callback) => {
+export default function diff(callback) {
   VLCClient.getStatus()
     .then((status) => {
       if (status.information) {

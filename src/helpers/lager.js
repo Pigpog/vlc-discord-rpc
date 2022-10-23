@@ -1,20 +1,19 @@
-/* eslint-disable comma-dangle */
-const fs = require('fs');
-const os = require('os');
-const path = require('path');
-const VLC = require('vlc.js');
-const { vlc } = require('../../config/config.js');
+import fs from 'fs';
+import os from 'os';
+import path from 'path';
+import Client from 'vlc.js';
+import { vlc } from '../../config/config.js';
 
-const client = new VLC.VLCClient(vlc);
-const destination = path.join(__dirname, '/../../logs/');
+const client = new Client(vlc.address, vlc.password);
+const destination = 'logs/';
 const logs = [{
   details: {
     arch: os.arch(),
-    type: os.type()
+    type: os.type(),
   }
 }];
 
-module.exports = (...args) => {
+export default function lager(...args) { 
   const log = {
     msg: args,
     time: Date.now()
@@ -31,6 +30,8 @@ module.exports = (...args) => {
 };
 
 process.on('exit', () => {
-  if (!fs.existsSync(destination)) fs.mkdirSync(destination);
+  if (!fs.existsSync(destination)) {
+    fs.mkdirSync(destination);
+  }
   fs.writeFileSync(`${destination}${Date.now()}.log`, JSON.stringify(logs));
 });
